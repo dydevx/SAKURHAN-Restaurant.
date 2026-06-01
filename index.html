@@ -503,7 +503,7 @@
 
     h1 {
       margin: 0;
-      font-size: 5.6rem;
+      font-size: clamp(3.2rem, 7vw, 5.6rem);
       line-height: 0.95;
       color: var(--ivory);
       text-shadow: 0 18px 46px rgba(0, 0, 0, 0.45);
@@ -811,6 +811,345 @@
       background: rgba(198, 161, 91, 0.08);
     }
 
+    .order-board {
+      margin-top: 4rem;
+      padding: 1.15rem;
+      border: 1px solid rgba(198, 161, 91, 0.28);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(251, 244, 232, 0.1), rgba(143, 29, 33, 0.12)),
+        rgba(251, 244, 232, 0.04);
+      box-shadow: var(--shadow-dark);
+    }
+
+    .order-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: end;
+      margin-bottom: 1.25rem;
+    }
+
+    .order-head h3 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--ivory);
+    }
+
+    .order-head p {
+      max-width: 640px;
+      margin: 0.55rem 0 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: rgba(251, 244, 232, 0.68);
+    }
+
+    .order-tools {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+      gap: 0.85rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-family: Arial, sans-serif;
+    }
+
+    .order-search {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid rgba(251, 244, 232, 0.14);
+      border-radius: var(--radius);
+      color: var(--ivory);
+      background: rgba(17, 16, 14, 0.5);
+      padding: 0.78rem 0.9rem;
+    }
+
+    .order-search::placeholder {
+      color: rgba(251, 244, 232, 0.42);
+    }
+
+    .category-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: flex-end;
+    }
+
+    .category-filter {
+      min-height: 36px;
+      border: 1px solid rgba(251, 244, 232, 0.14);
+      border-radius: 999px;
+      color: rgba(251, 244, 232, 0.76);
+      background: rgba(251, 244, 232, 0.07);
+      padding: 0 0.75rem;
+      font-size: 0.82rem;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .category-filter.is-active {
+      color: var(--charcoal);
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .order-summary {
+      margin: 0 0 0.85rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+      color: rgba(251, 244, 232, 0.58);
+    }
+
+    .order-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .order-items {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      align-content: start;
+      max-height: 820px;
+      overflow: auto;
+      padding-right: 0.35rem;
+    }
+
+    .order-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.8rem;
+      align-items: center;
+      min-height: 104px;
+      padding: 0.95rem;
+      border: 1px solid rgba(251, 244, 232, 0.12);
+      border-radius: var(--radius);
+      background: rgba(17, 16, 14, 0.45);
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    }
+
+    .order-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(198, 161, 91, 0.48);
+      background: rgba(17, 16, 14, 0.62);
+    }
+
+    .order-item h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--ivory);
+    }
+
+    .order-item p {
+      margin: 0.35rem 0 0.6rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      color: rgba(251, 244, 232, 0.62);
+    }
+
+    .order-price {
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .order-category {
+      display: inline-flex;
+      margin-bottom: 0.45rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: rgba(198, 161, 91, 0.9);
+    }
+
+    .add-order {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(198, 161, 91, 0.45);
+      border-radius: 50%;
+      color: var(--charcoal);
+      background: var(--gold);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .add-order:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 28px rgba(198, 161, 91, 0.22);
+    }
+
+    .add-order svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .cart-panel {
+      position: sticky;
+      top: 96px;
+      padding: 1rem;
+      border: 1px solid rgba(251, 244, 232, 0.14);
+      border-radius: var(--radius);
+      background: rgba(8, 7, 6, 0.76);
+      box-shadow: var(--shadow-dark);
+      font-family: Arial, sans-serif;
+    }
+
+    .cart-panel h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 0 0 0.8rem;
+      font-size: 1.1rem;
+      color: var(--ivory);
+    }
+
+    .cart-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 0.45rem;
+      border-radius: 999px;
+      color: var(--charcoal);
+      background: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .cart-list {
+      display: grid;
+      gap: 0.55rem;
+      min-height: 84px;
+      max-height: 300px;
+      overflow: auto;
+      padding-right: 0.25rem;
+    }
+
+    .cart-empty {
+      display: grid;
+      place-items: center;
+      min-height: 84px;
+      border: 1px dashed rgba(251, 244, 232, 0.18);
+      border-radius: var(--radius);
+      color: rgba(251, 244, 232, 0.48);
+      text-align: center;
+    }
+
+    .cart-line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.6rem;
+      align-items: center;
+      padding: 0.65rem;
+      border: 1px solid rgba(251, 244, 232, 0.1);
+      border-radius: var(--radius);
+      background: rgba(251, 244, 232, 0.06);
+    }
+
+    .cart-line strong {
+      display: block;
+      color: var(--ivory);
+      font-size: 0.9rem;
+    }
+
+    .cart-line small {
+      color: rgba(251, 244, 232, 0.56);
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .qty-controls button,
+    .cart-clear {
+      border: 1px solid rgba(251, 244, 232, 0.16);
+      color: var(--ivory);
+      background: rgba(251, 244, 232, 0.08);
+      border-radius: 50%;
+    }
+
+    .qty-controls button {
+      width: 28px;
+      height: 28px;
+    }
+
+    .qty-controls span {
+      min-width: 1.4rem;
+      text-align: center;
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .cart-clear {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius);
+    }
+
+    .cart-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(251, 244, 232, 0.14);
+      color: var(--ivory);
+      font-weight: 800;
+    }
+
+    .cart-total strong {
+      color: var(--gold);
+      font-size: 1.35rem;
+    }
+
+    .order-fields {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .order-fields input,
+    .order-fields textarea {
+      width: 100%;
+      border: 1px solid rgba(251, 244, 232, 0.16);
+      border-radius: var(--radius);
+      color: var(--ivory);
+      background: rgba(251, 244, 232, 0.07);
+      padding: 0.78rem 0.85rem;
+    }
+
+    .order-fields textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .cart-actions {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.85rem;
+    }
+
+    .cart-actions .btn {
+      width: 100%;
+    }
+
+    .cart-note {
+      min-height: 1.2rem;
+      margin: 0.2rem 0 0;
+      color: rgba(251, 244, 232, 0.62);
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
     .menu-book {
       position: relative;
       margin-top: 4rem;
@@ -1017,7 +1356,6 @@
         linear-gradient(180deg, rgba(17, 16, 14, 0.92), rgba(94, 16, 20, 0.9)),
         url("https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=1800&q=80");
       background-size: cover;
-      background-attachment: fixed;
       background-position: center calc(50% + var(--parallax-y, 0px));
     }
 
@@ -1602,6 +1940,50 @@
       }
     }
 
+    @media (max-height: 760px) and (min-width: 921px) {
+      .hero {
+        min-height: 660px;
+        padding: calc(var(--header-height) + 1rem) 0 3.5rem;
+      }
+
+      .hero-logo {
+        width: 78px;
+        height: 78px;
+        margin-bottom: 0.55rem;
+      }
+
+      .eyebrow {
+        margin-bottom: 0.55rem;
+        font-size: 0.74rem;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 5.5vw, 4.25rem);
+      }
+
+      .hero-slogan {
+        margin-top: 0.45rem;
+        font-size: 1.05rem;
+      }
+
+      .hero-actions {
+        margin-top: 0.85rem;
+      }
+
+      .hero-content {
+        margin-top: 0;
+        transform: translateY(-16px);
+      }
+
+      .hero-content.reveal.is-visible {
+        transform: translateY(-16px);
+      }
+
+      .hero-ribbon {
+        display: none;
+      }
+    }
+
     @media (max-width: 920px) {
       :root {
         --header-height: 70px;
@@ -1678,6 +2060,22 @@
 
       .menu-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .order-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .category-filters {
+        justify-content: flex-start;
+      }
+
+      .order-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-panel {
+        position: static;
       }
 
       .menu-book-head {
@@ -1784,6 +2182,7 @@
       }
 
       .menu-grid,
+      .order-items,
       .culture-grid,
       .signature-gallery,
       .reservation-form,
@@ -1894,6 +2293,7 @@
       <ul class="nav-links" id="primaryNav">
         <li><a href="#about">Restaurant</a></li>
         <li><a href="#menu">Speisekarte</a></li>
+        <li><a href="#order">Bestellen</a></li>
         <li><a href="#signature">Signature</a></li>
         <li><a href="#culture">Kultur</a></li>
         <li><a href="#chef">Chef</a></li>
@@ -2065,6 +2465,169 @@
             </div>
           </article>
         </div>
+
+        <section class="order-board reveal" id="order" aria-label="Online bestellen">
+          <div class="order-head">
+            <div>
+              <p class="section-kicker">Online bestellen</p>
+              <h3>Warenkorb & Rechnung per WhatsApp</h3>
+              <p>Alle bestellbaren Positionen aus der SAKURHAN PDF-Karte sind hier nach Kategorien sortiert. Suchen, auswählen, Gesamtbetrag prüfen und direkt als vorbereitete WhatsApp-Nachricht senden.</p>
+            </div>
+          </div>
+          <div class="order-tools" aria-label="Menü filtern">
+            <input class="order-search" id="orderSearch" type="search" placeholder="Menü durchsuchen, z. B. Sake, Pho, Kaffee">
+            <div class="category-filters" id="categoryFilters" aria-label="Kategorien"></div>
+          </div>
+          <p class="order-summary" id="orderSummary">Menü wird geladen.</p>
+          <div class="order-layout">
+            <div class="order-items" id="orderItems">
+              <article class="order-item">
+                <div>
+                  <h4>Sake Nigiri</h4>
+                  <p>Lachs Nigiri · 2 Stück</p>
+                  <span class="order-price">5,50 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Sake Nigiri" data-price="5.50" aria-label="Sake Nigiri hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Maguro Nigiri</h4>
+                  <p>Thunfisch Nigiri · 2 Stück</p>
+                  <span class="order-price">6,50 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Maguro Nigiri" data-price="6.50" aria-label="Maguro Nigiri hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Sake Maki</h4>
+                  <p>Lachs Maki · 8 Stück</p>
+                  <span class="order-price">5,50 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Sake Maki" data-price="5.50" aria-label="Sake Maki hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Sake Avocado Maki</h4>
+                  <p>Lachs, Avocado · 8 Stück</p>
+                  <span class="order-price">6,00 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Sake Avocado Maki" data-price="6.00" aria-label="Sake Avocado Maki hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Tekka Maki</h4>
+                  <p>Thunfisch Maki · 8 Stück</p>
+                  <span class="order-price">6,50 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Tekka Maki" data-price="6.50" aria-label="Tekka Maki hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Avocado Maki</h4>
+                  <p>Vegan · 8 Stück</p>
+                  <span class="order-price">4,90 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Avocado Maki" data-price="4.90" aria-label="Avocado Maki hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Crispy Gyoza</h4>
+                  <p>Japanische Teigtaschen · 4 Stück</p>
+                  <span class="order-price">6,90 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Crispy Gyoza" data-price="6.90" aria-label="Crispy Gyoza hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Edamame</h4>
+                  <p>Junge Sojabohnen mit Meersalz</p>
+                  <span class="order-price">5,90 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Edamame" data-price="5.90" aria-label="Edamame hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Udon Xao Tofu</h4>
+                  <p>Gebratene Udon, Gemüse, Kräuter</p>
+                  <span class="order-price">14,90 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Udon Xao Tofu" data-price="14.90" aria-label="Udon Xao Tofu hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Pho Vietnam Rind</h4>
+                  <p>Reisbandnudel-Suppe mit Rindfleisch</p>
+                  <span class="order-price">15,90 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Pho Vietnam Rind" data-price="15.90" aria-label="Pho Vietnam Rind hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Omakase Premium</h4>
+                  <p>Chef-Auswahl Sushi und Sashimi</p>
+                  <span class="order-price">47,00 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Omakase Premium" data-price="47.00" aria-label="Omakase Premium hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+              <article class="order-item">
+                <div>
+                  <h4>Xoi Xoai</h4>
+                  <p>Klebreis mit Mango und Kokosmilch</p>
+                  <span class="order-price">8,90 €</span>
+                </div>
+                <button class="add-order" type="button" data-name="Xoi Xoai" data-price="8.90" aria-label="Xoi Xoai hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+                </button>
+              </article>
+            </div>
+
+            <aside class="cart-panel" aria-label="Warenkorb">
+              <h3>Warenkorb <span class="cart-count" id="cartCount">0</span></h3>
+              <div class="cart-list" id="cartList">
+                <div class="cart-empty">Noch keine Gerichte ausgewählt.</div>
+              </div>
+              <div class="cart-total">
+                <span>Gesamt</span>
+                <strong id="cartTotal">0,00 €</strong>
+              </div>
+              <div class="order-fields">
+                <input id="orderName" type="text" autocomplete="name" placeholder="Name für die Bestellung">
+                <input id="orderPhone" type="tel" autocomplete="tel" placeholder="Telefonnummer">
+                <textarea id="orderNote" placeholder="Notiz, Abholzeit, Allergien"></textarea>
+              </div>
+              <div class="cart-actions">
+                <button class="btn btn-primary" type="button" id="sendWhatsApp">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.48 15.02L2.2 22l5.1-1.34A9.94 9.94 0 1 0 12.04 2Zm0 1.98a7.96 7.96 0 0 1 6.78 12.13 7.94 7.94 0 0 1-10.78 2.9l-.37-.22-3.02.8.81-2.95-.24-.39a7.95 7.95 0 0 1 6.82-12.27Zm-3.3 3.95c-.17 0-.44.06-.67.32-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.75 2.8 4.32 3.82 2.14.84 2.58.67 3.04.63.47-.04 1.5-.61 1.72-1.2.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.49-.3-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.57.13-.17.25-.65.82-.8.99-.15.17-.3.19-.55.06-.25-.13-1.07-.4-2.04-1.27-.75-.67-1.26-1.5-1.41-1.76-.15-.25-.02-.39.11-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.5Z"/></svg>
+                  Rechnung per WhatsApp senden
+                </button>
+                <button class="btn btn-secondary" type="button" id="clearCart">Warenkorb leeren</button>
+              </div>
+              <p class="cart-note" id="cartNote" aria-live="polite"></p>
+            </aside>
+          </div>
+        </section>
 
         <aside class="menu-book reveal" id="originalMenu" aria-label="Originale Speisekarte als blätterbares PDF">
           <div class="menu-book-head">
@@ -2429,6 +2992,19 @@
       const menuRightPage = document.getElementById("menuRightPage");
       const menuEmptyNote = menuRightPage.querySelector(".menu-empty-note");
       const menuSinglePage = window.matchMedia("(max-width: 920px)");
+      const orderItems = document.getElementById("orderItems");
+      const cartList = document.getElementById("cartList");
+      const cartCount = document.getElementById("cartCount");
+      const cartTotal = document.getElementById("cartTotal");
+      const clearCart = document.getElementById("clearCart");
+      const sendWhatsApp = document.getElementById("sendWhatsApp");
+      const cartNote = document.getElementById("cartNote");
+      const orderName = document.getElementById("orderName");
+      const orderPhone = document.getElementById("orderPhone");
+      const orderNote = document.getElementById("orderNote");
+      const orderSearch = document.getElementById("orderSearch");
+      const categoryFilters = document.getElementById("categoryFilters");
+      const orderSummary = document.getElementById("orderSummary");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       const hideLoader = () => loader && loader.classList.add("is-hidden");
@@ -2540,6 +3116,400 @@
 
       updateMenuBook();
 
+      const menuItems = [
+        { category: "Aktionen", name: "Tapas all you can eat", description: "Unbegrenzte Tapasreise pro Person", price: 42.90 },
+        { category: "Aktionen", name: "Ein-Meter-Überraschungs Tapas-Brett", description: "Kalte und warme Tapas gemischt", price: 34.90 },
+        { category: "Aktionen", name: "Tapas-Menü", description: "3 Tapas und Dessert zur Auswahl", price: 29.90 },
+        { category: "Aktionen", name: "Gut-Esser-Tapas-Menü", description: "5 Tapas und Dessert zur Auswahl", price: 32.90 },
+        { category: "Beilage", name: "Jasminreis", description: "Beilage", price: 2.00 },
+        { category: "Beilage", name: "Udonnudeln", description: "Beilage", price: 3.00 },
+        { category: "Beilage", name: "Reisbandnudeln", description: "Beilage", price: 3.00 },
+        { category: "Beilage", name: "Reisnudeln", description: "Beilage", price: 3.00 },
+        { category: "Beilage", name: "Eiernudeln", description: "Beilage", price: 3.00 },
+        { category: "Beilage", name: "Teriyaki Soße", description: "Sauce", price: 1.80 },
+        { category: "Beilage", name: "Süß-Sauer-Soße", description: "Sauce", price: 1.80 },
+        { category: "Beilage", name: "Erdnusssoße", description: "Sauce", price: 1.80 },
+        { category: "Beilage", name: "Chili-Limetten-Soße", description: "Sauce", price: 1.80 },
+        { category: "Beilage", name: "Hoisinsoße", description: "Sauce", price: 1.80 },
+        { category: "Beilage", name: "Currysoße", description: "Sauce", price: 1.80 },
+        { category: "Tapas", name: "1. Tôm nướng", description: "Ganze Garnelen vom Grill", price: 8.90 },
+        { category: "Tapas", name: "2. Mực nang nướng", description: "Gegrillter Tintenfisch", price: 9.90 },
+        { category: "Tapas", name: "3. Mực Ống nướng", description: "Gegrillte Tintenfischtube", price: 9.90 },
+        { category: "Tapas", name: "4. Mực con nướng", description: "Gegrillte Baby-Calamares", price: 8.90 },
+        { category: "Tapas", name: "5. Sườn cừu nướng", description: "Lammkoteletts gegrillt", price: 11.90 },
+        { category: "Tapas", name: "6. Arg. bò nướng", description: "Argentinische Rinderfiletstreifen gegrillt", price: 16.90 },
+        { category: "Tapas", name: "7. BBQ Đùi gà", description: "Gegrillte Hähnchenschenkel ohne Knochen", price: 8.90 },
+        { category: "Tapas", name: "8. Bo La Lot", description: "Rindfleisch in Betelblättern", price: 6.90 },
+        { category: "Tapas", name: "9A. Miso-Suppe Tofu", description: "Seetang, Miso-Paste, Lauch, Zwiebeln", price: 5.90 },
+        { category: "Tapas", name: "9B. Miso-Suppe Lachs", description: "Seetang, Miso-Paste, Lauch, Zwiebeln", price: 6.90 },
+        { category: "Tapas", name: "10. Wantan-Suppe", description: "Teigtaschen mit Huhn und Garnelen", price: 5.90 },
+        { category: "Tapas", name: "11A. Kokos Suppe Tofu", description: "Kokosmilch, Tom Yam, Champignons", price: 5.90 },
+        { category: "Tapas", name: "11B. Kokos Suppe Hühnerfleisch", description: "Kokosmilch, Tom Yam, Champignons", price: 5.90 },
+        { category: "Tapas", name: "11C. Kokos Suppe Garnelen", description: "Kokosmilch, Tom Yam, Champignons", price: 5.90 },
+        { category: "Tapas", name: "12A. Sommerrollen Tofu", description: "Reispapier, Reisnudeln, Pfefferminze", price: 5.90 },
+        { category: "Tapas", name: "12B. Sommerrollen Hühnerfleisch", description: "Reispapier, Reisnudeln, Pfefferminze", price: 5.90 },
+        { category: "Tapas", name: "12C. Sommerrollen Garnelen", description: "Reispapier, Reisnudeln, Pfefferminze", price: 6.90 },
+        { category: "Tapas", name: "13. Vietnamesische Frühlingsrollen", description: "Hackfleisch, Garnelen, Ei, Gemüse", price: 6.90 },
+        { category: "Tapas", name: "14. Mini Frühlingsrollen vegan", description: "6 Stück mit Süß-Sauer-Soße", price: 6.50 },
+        { category: "Tapas", name: "15. Gebackene Wantan", description: "5 Stück mit Salatmix", price: 6.90 },
+        { category: "Tapas", name: "16. Ga Sate", description: "2 Hühnerspieße mit Erdnusssoße", price: 7.90 },
+        { category: "Tapas", name: "17. Tom Chien Xu", description: "3 Garnelen in Tempura", price: 8.90 },
+        { category: "Tapas", name: "18. Bo sot vang", description: "Vietnamesischer Rindfleischtopf", price: 10.90 },
+        { category: "Tapas", name: "19. Süßkartoffel-Pommes", description: "Mit Avocadodip", price: 7.50 },
+        { category: "Tapas", name: "20. Mực chiên", description: "Gebackene Baby-Calamares", price: 10.90 },
+        { category: "Tapas", name: "21. Cánh gà chiên", description: "Gebackene Chicken Wings", price: 8.90 },
+        { category: "Tapas", name: "22. Cá cơm chiên", description: "Frittierte Sardellen", price: 9.90 },
+        { category: "Tapas", name: "23. Edamame", description: "Sojabohnen mit Meersalz", price: 5.90 },
+        { category: "Tapas", name: "24. Hakao", description: "4 Stück mit Garnelenfüllung", price: 6.90 },
+        { category: "Tapas", name: "25. Crispy Gyoza", description: "4 Stück mit Hühnerfleisch", price: 6.90 },
+        { category: "Tapas", name: "26. Crispy vegetarische Gyoza", description: "4 Stück mit Gemüse", price: 6.90 },
+        { category: "Tapas", name: "27. Wakame Salat vegan", description: "Seetangsalat, Mixsalat, Sesamsoße", price: 5.50 },
+        { category: "Tapas", name: "28. Kimchi Salat", description: "Leicht scharf", price: 5.50 },
+        { category: "Tapas", name: "29. Goi du du Papayasalat", description: "Papaya, Pfefferminze, Erdnüsse", price: 7.50 },
+        { category: "Tapas", name: "30. Mango Salat", description: "Mango, Salatmix, Erdnüsse, Fischsoße", price: 6.90 },
+        { category: "Kinder", name: "31. Sohn", description: "Hühnerspieß mit Reis oder Süßkartoffelpommes", price: 8.00 },
+        { category: "Kinder", name: "32. Tochter und Sohn", description: "Tempura Garnelen mit Reis oder Süßkartoffelpommes", price: 8.00 },
+        { category: "Kinder", name: "33. Tochter", description: "Frittierte Hähnchenbrust mit Süß-Sauer-Soße", price: 9.00 },
+        { category: "Sashimi", name: "34. Maguro Sashimi", description: "Thunfisch, 3 Stück", price: 8.90 },
+        { category: "Sashimi", name: "35. Sake Sashimi", description: "Lachs, 3 Stück", price: 7.90 },
+        { category: "Sashimi", name: "36. Maguro & Sake Sashimi", description: "Thunfisch und Lachs, je 3 Stück", price: 11.90 },
+        { category: "Nigiri", name: "37. Sake Nigiri", description: "Mit Lachs", price: 5.50 },
+        { category: "Nigiri", name: "38. Maguro Nigiri", description: "Mit Thunfisch", price: 6.50 },
+        { category: "Nigiri", name: "39. Ebi Nigiri", description: "Mit gekochter Garnele", price: 6.50 },
+        { category: "Nigiri", name: "40. Mutsu Nigiri", description: "Mit weißem Butterfisch", price: 5.50 },
+        { category: "Nigiri", name: "41. Unagi Nigiri", description: "Mit gegrilltem Süßwasseraal", price: 6.50 },
+        { category: "Nigiri", name: "42. Tamago Nigiri", description: "Veggie, japanisches Omelett", price: 4.50 },
+        { category: "Nigiri", name: "43. Inari Nigiri", description: "Vegan, japanischer Tofu", price: 4.50 },
+        { category: "Nigiri", name: "44. Avocado Nigiri", description: "Vegan, Avocado", price: 4.50 },
+        { category: "Maki", name: "45. Sake Maki", description: "Lachs, 8 Stück", price: 5.50 },
+        { category: "Maki", name: "46. Sake Avocado Maki", description: "Lachs und Avocado, 8 Stück", price: 6.00 },
+        { category: "Maki", name: "47. Tekka Kappa Maki", description: "Thunfisch und Gurke, 8 Stück", price: 6.50 },
+        { category: "Maki", name: "48. Tekka Maki", description: "Thunfisch, 8 Stück", price: 6.50 },
+        { category: "Maki", name: "49. Tuna Maki", description: "Gekochter Thunfisch, 8 Stück", price: 6.00 },
+        { category: "Maki", name: "50. Mutsu Maki", description: "Weißer Butterfisch, 8 Stück", price: 5.50 },
+        { category: "Maki", name: "51. Ebi Maki", description: "Gekochte Garnelen, 8 Stück", price: 6.50 },
+        { category: "Maki", name: "52. Ebi Avocado Maki", description: "Garnelen und Avocado, 8 Stück", price: 6.50 },
+        { category: "Maki", name: "53. Salmonskin Maki", description: "Gegrillte Lachshaut, Sesam, 8 Stück", price: 5.50 },
+        { category: "Maki", name: "54. Unagi Maki", description: "Gegrillter Süßwasseraal, Sesam, 8 Stück", price: 6.50 },
+        { category: "Maki", name: "55. Avocado Maki", description: "Vegan, 8 Stück", price: 4.90 },
+        { category: "Maki", name: "56. Kappa Maki", description: "Vegan, Gurke und Sesam, 8 Stück", price: 4.50 },
+        { category: "Maki", name: "57. Tamago Maki", description: "Veggie, japanisches Omelett, 8 Stück", price: 6.90 },
+        { category: "Tempura Roll", name: "58. Sake Tempura Big-Roll", description: "Lachs, Avocado, Gurke, Frischkäse", price: 12.00 },
+        { category: "Tempura Roll", name: "59. Tuna Tempura Big-Roll", description: "Thunfisch, Avocado, Gurke, Frischkäse", price: 13.00 },
+        { category: "Tempura Roll", name: "60. Ebi Tempura Big-Roll", description: "Garnelen, Avocado, Gurke, Frischkäse", price: 13.00 },
+        { category: "Tempura Roll", name: "61. California Tempura Big-Roll", description: "Krebsfleischimitat, Avocado, Gurke", price: 12.00 },
+        { category: "Tempura Roll", name: "62. Mutzu Tempura Big-Roll", description: "Butterfisch, Gurke, Avocado, Frischkäse", price: 12.00 },
+        { category: "Tempura Roll", name: "63. Vegetarisch Tempura Big-Roll", description: "Avocado, Gurke, Spargel, Omelett", price: 11.00 },
+        { category: "Inside-Out", name: "64. Sake Avocado Inside-Out Roll", description: "Lachs, Avocado, Fischrogen, Sesam", price: 10.50 },
+        { category: "Inside-Out", name: "65. Maguro Inside-Out Roll", description: "Thunfisch, Gurke, Fischrogen, Sesam", price: 11.00 },
+        { category: "Inside-Out", name: "66. California Inside-Out Roll", description: "Krebsfleischimitat, Avocado, Fischrogen", price: 10.50 },
+        { category: "Inside-Out", name: "67. Mutzu Inside-Out Roll", description: "Butterfisch, Gurke, Fischrogen, Sesam", price: 10.50 },
+        { category: "Inside-Out", name: "68. Ebi Tempura Inside-Out Roll", description: "Garnelen in Tempura, Gurke, Frischkäse", price: 11.00 },
+        { category: "Inside-Out", name: "69. Salmon Skin Inside-Out Roll", description: "Gegrillte Lachshaut, Gurke, Frischkäse", price: 10.00 },
+        { category: "Inside-Out", name: "70. Tuna Inside-Out Roll", description: "Gekochter Thunfisch, Gurke, Sesam", price: 10.50 },
+        { category: "Inside-Out", name: "71. Unagi Inside-Out Roll", description: "Süßwasseraal, Gurke, Sesam", price: 11.00 },
+        { category: "Inside-Out", name: "72. Tamago Avo Inside-Out Roll", description: "Omelett, Avocado, Sesam", price: 9.00 },
+        { category: "Inside-Out", name: "73. Veggie Inside-Out Roll", description: "Avocado, Gurke, Rettich, Frischkäse", price: 9.00 },
+        { category: "Special Roll", name: "74. Crispy Tiger Roll", description: "Garnelen Tempura, flambierter Lachs", price: 14.00 },
+        { category: "Special Roll", name: "75. Salmon Mix Roll", description: "Unagi, Lachshaut, Lachs", price: 14.00 },
+        { category: "Special Roll", name: "76. Tunacado Roll", description: "Avocado Tempura, flambierter Thunfisch", price: 15.00 },
+        { category: "Special Roll", name: "77. Dragon Roll", description: "Garnelen Tempura, Avocado, Frischkäse", price: 14.50 },
+        { category: "Sushi Set", name: "88. Sakurahn Mixed", description: "Avocado Maki, Lachs Maki, Thunfisch Maki", price: 15.90 },
+        { category: "Sushi Set", name: "89. Sakurahn Salmons", description: "Lachs Maki, Lachs Nigiri, Lachs Sashimi", price: 16.50 },
+        { category: "Sushi Set", name: "90. Sakurahn Veggies", description: "Avocado Maki, Gurke Maki, Vegan Tempura", price: 16.50 },
+        { category: "Sushi Set", name: "91. Sakurahn Ocean", description: "Tuna Nigiri, Butterfisch Sashimi, Sake Tempura", price: 22.50 },
+        { category: "Sushi Set", name: "92. Sakurahn Deep Ocean", description: "Lachs Maki, California, Nigiri", price: 23.50 },
+        { category: "Sushi Set", name: "93. Sakurahn Platte", description: "Für 2 Personen", price: 47.00 },
+        { category: "Sushi Set", name: "94. Sakurahn Familie Platte", description: "Für 3-4 Personen", price: 79.00 },
+        { category: "Hauptspeisen", name: "95A. Pho Vietnam Tofu", description: "Reisbandnudel-Suppe", price: 13.90 },
+        { category: "Hauptspeisen", name: "95B. Pho Vietnam Hähnchenbrust", description: "Reisbandnudel-Suppe", price: 14.90 },
+        { category: "Hauptspeisen", name: "95C. Pho Vietnam Rindfleisch", description: "Reisbandnudel-Suppe", price: 15.90 },
+        { category: "Hauptspeisen", name: "96A. Bun Tron Tofu", description: "Warmer Reisnudelsalat", price: 13.90 },
+        { category: "Hauptspeisen", name: "96B. Bun Tron Hühnchen", description: "Warmer Reisnudelsalat", price: 14.90 },
+        { category: "Hauptspeisen", name: "96C. Bun Tron Rindfleisch", description: "Warmer Reisnudelsalat", price: 15.90 },
+        { category: "Hauptspeisen", name: "96D. Bun Tron Frühlingsrolle", description: "Warmer Reisnudelsalat", price: 15.90 },
+        { category: "Hauptspeisen", name: "96E. Bun Tron Veggie Frühlingsrollen", description: "Warmer Reisnudelsalat", price: 15.90 },
+        { category: "Hauptspeisen", name: "97A. Udon Xao Tofu", description: "Gebratene Udon mit Gemüse", price: 14.90 },
+        { category: "Hauptspeisen", name: "97B. Udon Xao Garnelen", description: "Gebratene Udon mit Gemüse", price: 18.90 },
+        { category: "Hauptspeisen", name: "97C. Udon Xao Hähnchenbrust", description: "Gebratene Udon mit Gemüse", price: 16.90 },
+        { category: "Hauptspeisen", name: "97D. Udon Xao Arg. Rindfleisch", description: "Gebratene Udon mit Gemüse", price: 20.90 },
+        { category: "Hauptspeisen", name: "97E. Udon Xao Ente kross", description: "Gebratene Udon mit Gemüse", price: 18.90 },
+        { category: "Hauptspeisen", name: "97F. Udon Xao Lachs", description: "Gebratene Udon mit Gemüse", price: 19.90 },
+        { category: "Hauptspeisen", name: "98A. Asia Nudeln Tofu", description: "Gebratene goldene Nudeln", price: 14.90 },
+        { category: "Hauptspeisen", name: "98B. Asia Nudeln Garnelen", description: "Gebratene goldene Nudeln", price: 18.90 },
+        { category: "Hauptspeisen", name: "98C. Asia Nudeln Hähnchenbrust", description: "Gebratene goldene Nudeln", price: 16.90 },
+        { category: "Hauptspeisen", name: "98D. Asia Nudeln Arg. Rindfleisch", description: "Gebratene goldene Nudeln", price: 20.90 },
+        { category: "Hauptspeisen", name: "98E. Asia Nudeln Ente kross", description: "Gebratene goldene Nudeln", price: 18.90 },
+        { category: "Hauptspeisen", name: "98F. Asia Nudeln Lachs", description: "Gebratene goldene Nudeln", price: 19.90 },
+        { category: "Hauptspeisen", name: "99A. Erdnusscreme Tofu", description: "Pikante Erdnusscreme mit Reis", price: 14.90 },
+        { category: "Hauptspeisen", name: "99B. Erdnusscreme Garnelen", description: "Pikante Erdnusscreme mit Reis", price: 18.90 },
+        { category: "Hauptspeisen", name: "99C. Erdnusscreme Hähnchenbrust", description: "Pikante Erdnusscreme mit Reis", price: 16.90 },
+        { category: "Hauptspeisen", name: "99D. Erdnusscreme Arg. Rindfleisch", description: "Pikante Erdnusscreme mit Reis", price: 20.90 },
+        { category: "Hauptspeisen", name: "99E. Erdnusscreme Ente kross", description: "Pikante Erdnusscreme mit Reis", price: 18.90 },
+        { category: "Hauptspeisen", name: "99F. Erdnusscreme Lachs", description: "Pikante Erdnusscreme mit Reis", price: 19.90 },
+        { category: "Hauptspeisen", name: "99G. Erdnusscreme Hühnerspieße", description: "2 Stück mit Reis", price: 16.90 },
+        { category: "Hauptspeisen", name: "100A. Cari Do Tofu", description: "Rote Curry-Kokoscreme mit Reis", price: 14.90 },
+        { category: "Hauptspeisen", name: "100B. Cari Do Garnelen", description: "Rote Curry-Kokoscreme mit Reis", price: 18.90 },
+        { category: "Hauptspeisen", name: "100C. Cari Do Hähnchenbrust", description: "Rote Curry-Kokoscreme mit Reis", price: 16.90 },
+        { category: "Hauptspeisen", name: "100D. Cari Do Arg. Rindfleisch", description: "Rote Curry-Kokoscreme mit Reis", price: 20.90 },
+        { category: "Hauptspeisen", name: "100E. Cari Do Ente kross", description: "Rote Curry-Kokoscreme mit Reis", price: 18.90 },
+        { category: "Hauptspeisen", name: "100F. Cari Do Lachs", description: "Rote Curry-Kokoscreme mit Reis", price: 19.90 },
+        { category: "Hauptspeisen", name: "101A. Hosinsoße Tofu", description: "Hoisin-Kokoscreme mit Reis", price: 14.90 },
+        { category: "Hauptspeisen", name: "101B. Hosinsoße Garnelen", description: "Hoisin-Kokoscreme mit Reis", price: 18.90 },
+        { category: "Hauptspeisen", name: "101C. Hosinsoße Hähnchenbrust", description: "Hoisin-Kokoscreme mit Reis", price: 16.90 },
+        { category: "Hauptspeisen", name: "101D. Hosinsoße Arg. Rindfleisch", description: "Hoisin-Kokoscreme mit Reis", price: 20.90 },
+        { category: "Hauptspeisen", name: "101E. Hosinsoße Ente kross", description: "Hoisin-Kokoscreme mit Reis", price: 18.90 },
+        { category: "Hauptspeisen", name: "101F. Hosinsoße Lachs", description: "Hoisin-Kokoscreme mit Reis", price: 19.90 },
+        { category: "Hauptspeisen", name: "102. Bun Bo Lalot", description: "Rindfleisch in Betelblättern mit Reisnudeln", price: 17.90 },
+        { category: "Hauptspeisen", name: "103. Xoi Ga", description: "Kokos-Klebreis mit Hähnchenschenkel", price: 17.90 },
+        { category: "Hauptspeisen", name: "104. Bun Cha Nuong", description: "Reisnudeln mit gegrilltem Schweinefleisch", price: 17.90 },
+        { category: "BBQ", name: "105. Tôm nướng BBQ", description: "Ganze Garnelen vom Grill", price: 17.50 },
+        { category: "BBQ", name: "106. Mực nang nướng BBQ", description: "Gegrillter Tintenfisch", price: 18.50 },
+        { category: "BBQ", name: "107. Mực Ống nướng BBQ", description: "Gegrillte Tintenfischtube", price: 18.90 },
+        { category: "BBQ", name: "108. Mực con nướng BBQ", description: "Gegrillte Baby-Calamares", price: 18.50 },
+        { category: "BBQ", name: "109. Sườn cừu nướng BBQ", description: "Lammkoteletts gegrillt", price: 21.90 },
+        { category: "BBQ", name: "110. Arg. bò nướng BBQ", description: "Argentinische Rinderfiletstreifen", price: 20.90 },
+        { category: "BBQ", name: "111. BBQ Đùi gà", description: "Hähnchenschenkel ohne Knochen", price: 17.90 },
+        { category: "BBQ", name: "112. Arg Roastbeef", description: "Arg. Roastbeef mit Beilage", price: 31.90 },
+        { category: "Dessert", name: "113. Xoi xoài", description: "Klebreis mit Mango und Kokosmilch", price: 6.90 },
+        { category: "Dessert", name: "114. Kem Vanil", description: "Vanille-Creme, karamellisierter Zucker", price: 8.50 },
+        { category: "Dessert", name: "115. Bánh hạnh nhân với kem", description: "Mandelkuchen mit Eiscreme", price: 8.90 },
+        { category: "Dessert", name: "116. Schoko Brownie mit Eiscreme", description: "Chocolate brownie with ice cream", price: 8.50 },
+        { category: "Getränke", name: "Gas Sekt 0,1l", description: "Sekt", price: 5.50 },
+        { category: "Getränke", name: "Sekt Hausmarke 0,7l", description: "Sekt", price: 26.00 },
+        { category: "Getränke", name: "Hauswein Glas 0,15l", description: "Rioja Rot, Weiß oder Rosé", price: 5.50 },
+        { category: "Getränke", name: "Hauswein Karaffe 0,25l", description: "Rioja Rot, Weiß oder Rosé", price: 6.50 },
+        { category: "Getränke", name: "Hauswein Karaffe 0,5l", description: "Rioja Rot, Weiß oder Rosé", price: 13.00 },
+        { category: "Getränke", name: "Hauswein Karaffe 1l", description: "Rioja Rot, Weiß oder Rosé", price: 26.00 },
+        { category: "Getränke", name: "Sangria Glas 0,3l", description: "Weiß, Rot oder Rosé", price: 7.50 },
+        { category: "Getränke", name: "Sangria Karaffe 0,5l", description: "Weiß, Rot oder Rosé", price: 14.00 },
+        { category: "Getränke", name: "Sangria Karaffe 1l", description: "Weiß, Rot oder Rosé", price: 26.00 },
+        { category: "Getränke", name: "Tinto de Verano 0,3l", description: "Aperitif", price: 6.50 },
+        { category: "Getränke", name: "Aperol Spritz", description: "Aperitif", price: 7.50 },
+        { category: "Getränke", name: "Lille Wildberry", description: "Aperitif", price: 8.00 },
+        { category: "Getränke", name: "Cola 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Cola Zero 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Fanta 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Sprite 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Cola/Fanta/Sprite 0,4l", description: "Alkoholfrei", price: 4.80 },
+        { category: "Getränke", name: "Mineralwasser 0,25l", description: "Alkoholfrei", price: 2.80 },
+        { category: "Getränke", name: "Mineralwasser 0,7l", description: "Alkoholfrei", price: 6.90 },
+        { category: "Getränke", name: "Apfelschorle 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Apfelschorle 0,4l", description: "Alkoholfrei", price: 4.80 },
+        { category: "Getränke", name: "Orangennektar 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Kirschnektar 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Bananensaftnektar 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Tonic Water 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Bitter Lemon 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Ginger Ale 0,2l", description: "Alkoholfrei", price: 3.00 },
+        { category: "Getränke", name: "Cuba Libre 0,25l", description: "Longdrink", price: 7.50 },
+        { category: "Getränke", name: "Bacardi Cola 0,25l", description: "Longdrink", price: 7.50 },
+        { category: "Getränke", name: "Gin Cola 0,25l", description: "Longdrink", price: 7.50 },
+        { category: "Getränke", name: "Whiskey Cola 0,25l", description: "Longdrink", price: 7.50 },
+        { category: "Getränke", name: "Gin Tonic 0,25l", description: "Longdrink", price: 7.50 },
+        { category: "Getränke", name: "Warsteiner Pils 0,2l", description: "Bier", price: 2.30 },
+        { category: "Getränke", name: "Warsteiner Pils 0,3l", description: "Bier", price: 3.30 },
+        { category: "Getränke", name: "Estrella Galicia 0,3l", description: "Bier", price: 4.00 },
+        { category: "Getränke", name: "Bitburger Pils 0,2l", description: "Bier", price: 2.30 },
+        { category: "Getränke", name: "Bitburger Pils 0,3l", description: "Bier", price: 3.30 },
+        { category: "Getränke", name: "Zunft Kölsch 0,2l", description: "Bier", price: 2.30 },
+        { category: "Getränke", name: "Zunft Kölsch 0,3l", description: "Bier", price: 3.30 },
+        { category: "Getränke", name: "Frankenheimer Alt 0,2l", description: "Bier", price: 2.30 },
+        { category: "Getränke", name: "Frankenheimer Alt 0,3l", description: "Bier", price: 3.30 },
+        { category: "Getränke", name: "Weizenbier 0,5l", description: "Bier", price: 5.50 },
+        { category: "Getränke", name: "Weizenbier alkoholfrei 0,5l", description: "Bier", price: 5.50 },
+        { category: "Getränke", name: "Malzbier 0,3l", description: "Bier", price: 3.50 },
+        { category: "Getränke", name: "Alkoholfreies Bier 0,33l", description: "Bier", price: 3.50 },
+        { category: "Getränke", name: "Estrella alkoholfrei 0,33l", description: "Bier", price: 3.50 },
+        { category: "Getränke", name: "Kaffee", description: "Warmgetränk", price: 2.50 },
+        { category: "Getränke", name: "Milchkaffee", description: "Warmgetränk", price: 3.00 },
+        { category: "Getränke", name: "Kakao", description: "Warmgetränk", price: 2.50 },
+        { category: "Getränke", name: "Cortado", description: "Warmgetränk", price: 4.00 },
+        { category: "Getränke", name: "Latte Macchiato", description: "Warmgetränk", price: 4.00 },
+        { category: "Getränke", name: "Cappuccino", description: "Warmgetränk", price: 3.00 },
+        { category: "Getränke", name: "Espresso", description: "Warmgetränk", price: 2.50 },
+        { category: "Getränke", name: "Carajillo", description: "Mit gebranntem Brandy", price: 5.50 },
+        { category: "Getränke", name: "Cà phê sữa nóng", description: "Vietnamesischer Kaffee warm", price: 4.50 },
+        { category: "Getränke", name: "Cà phê sữa đá", description: "Vietnamesischer Kaffee kalt", price: 5.00 },
+        { category: "Getränke", name: "Jasmin Tee", description: "Warm-Tee", price: 2.50 },
+        { category: "Getränke", name: "Grüner Tee", description: "Warm-Tee", price: 2.50 },
+        { category: "Getränke", name: "Ingwer Tee", description: "Ingwer, Minze, Orange, Honig", price: 2.50 },
+        { category: "Getränke", name: "Zitronengras Tee", description: "Zitronengras, Limette, Honig", price: 2.50 },
+        { category: "Getränke", name: "Hibikusblüten Tee", description: "Zitronengras, Limette, Rohzucker", price: 2.50 },
+        { category: "Getränke", name: "Mango Shake", description: "Smoothie", price: 5.90 },
+        { category: "Getränke", name: "Erdbeeren Shake", description: "Smoothie", price: 5.90 },
+        { category: "Getränke", name: "Avocado Shake", description: "Smoothie", price: 5.90 },
+        { category: "Getränke", name: "Chanh da", description: "Hausgemachter Eistee", price: 5.90 },
+        { category: "Getränke", name: "Tre xanh chan dau", description: "Hausgemachter Eistee", price: 5.90 },
+        { category: "Getränke", name: "Tra chanh da", description: "Hausgemachter Eistee", price: 5.90 }
+      ];
+
+      const euro = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" });
+      const categoryOrder = ["Alle", ...Array.from(new Set(menuItems.map((item) => item.category)))];
+      let activeCategory = "Alle";
+
+      const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+
+      const normalize = (value) => String(value).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+      const renderCategoryFilters = () => {
+        categoryFilters.innerHTML = categoryOrder.map((category) => `
+          <button class="category-filter${category === activeCategory ? " is-active" : ""}" type="button" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>
+        `).join("");
+      };
+
+      const renderMenuItems = () => {
+        const term = normalize(orderSearch.value.trim());
+        const filtered = menuItems.filter((item) => {
+          const categoryMatch = activeCategory === "Alle" || item.category === activeCategory;
+          const haystack = normalize(`${item.name} ${item.description} ${item.category}`);
+          return categoryMatch && (!term || haystack.includes(term));
+        });
+
+        orderSummary.textContent = `${filtered.length} von ${menuItems.length} Positionen aus der PDF-Karte`;
+
+        if (!filtered.length) {
+          orderItems.innerHTML = '<div class="cart-empty">Keine passenden Menüpositionen gefunden.</div>';
+          return;
+        }
+
+        orderItems.innerHTML = filtered.map((item) => `
+          <article class="order-item">
+            <div>
+              <span class="order-category">${escapeHtml(item.category)}</span>
+              <h4>${escapeHtml(item.name)}</h4>
+              <p>${escapeHtml(item.description)}</p>
+              <span class="order-price">${euro.format(item.price)}</span>
+            </div>
+            <button class="add-order" type="button" data-name="${escapeHtml(item.name)}" data-price="${item.price}" aria-label="${escapeHtml(item.name)} hinzufügen">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5Z"/></svg>
+            </button>
+          </article>
+        `).join("");
+      };
+
+      categoryFilters.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-category]");
+        if (!button) return;
+        activeCategory = button.dataset.category;
+        renderCategoryFilters();
+        renderMenuItems();
+      });
+
+      orderSearch.addEventListener("input", renderMenuItems);
+      renderCategoryFilters();
+      renderMenuItems();
+
+      const cart = new Map();
+      const whatsappNumber = "4921918428318";
+
+      const getCartLines = () => Array.from(cart.values());
+
+      const renderCart = () => {
+        const lines = getCartLines();
+        const totalQuantity = lines.reduce((sum, item) => sum + item.quantity, 0);
+        const total = lines.reduce((sum, item) => sum + item.quantity * item.price, 0);
+
+        cartCount.textContent = String(totalQuantity);
+        cartTotal.textContent = euro.format(total);
+
+        if (!lines.length) {
+          cartList.innerHTML = '<div class="cart-empty">Noch keine Gerichte ausgewählt.</div>';
+          return;
+        }
+
+        cartList.innerHTML = lines.map((item) => `
+          <div class="cart-line" data-name="${escapeHtml(item.name)}">
+            <div>
+              <strong>${escapeHtml(item.name)}</strong>
+              <small>${euro.format(item.price)} · ${euro.format(item.price * item.quantity)}</small>
+            </div>
+            <div class="qty-controls" aria-label="Menge für ${item.name}">
+              <button type="button" data-cart-action="decrease" aria-label="${item.name} reduzieren">−</button>
+              <span>${item.quantity}</span>
+              <button type="button" data-cart-action="increase" aria-label="${item.name} erhöhen">+</button>
+              <button class="cart-clear" type="button" data-cart-action="remove" aria-label="${item.name} entfernen">×</button>
+            </div>
+          </div>
+        `).join("");
+      };
+
+      const addToCart = (name, price) => {
+        const current = cart.get(name);
+        if (current) {
+          current.quantity += 1;
+        } else {
+          cart.set(name, { name, price, quantity: 1 });
+        }
+        cartNote.textContent = `${name} wurde hinzugefügt.`;
+        renderCart();
+      };
+
+      orderItems.addEventListener("click", (event) => {
+        const button = event.target.closest(".add-order");
+        if (!button) return;
+        addToCart(button.dataset.name, Number(button.dataset.price));
+      });
+
+      cartList.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-cart-action]");
+        if (!button) return;
+
+        const line = button.closest(".cart-line");
+        const item = cart.get(line.dataset.name);
+        if (!item) return;
+
+        const action = button.dataset.cartAction;
+        if (action === "increase") item.quantity += 1;
+        if (action === "decrease") item.quantity -= 1;
+        if (action === "remove" || item.quantity <= 0) cart.delete(item.name);
+
+        cartNote.textContent = cart.size ? "Warenkorb aktualisiert." : "Warenkorb ist leer.";
+        renderCart();
+      });
+
+      clearCart.addEventListener("click", () => {
+        cart.clear();
+        cartNote.textContent = "Warenkorb wurde geleert.";
+        renderCart();
+      });
+
+      sendWhatsApp.addEventListener("click", () => {
+        const lines = getCartLines();
+        if (!lines.length) {
+          cartNote.textContent = "Bitte wählen Sie zuerst mindestens ein Gericht aus.";
+          return;
+        }
+
+        const total = lines.reduce((sum, item) => sum + item.quantity * item.price, 0);
+        const orderLines = lines
+          .map((item) => `${item.quantity}x ${item.name} - ${euro.format(item.price * item.quantity)}`)
+          .join("\n");
+
+        const message = [
+          "SAKURHAN Bestellung",
+          "",
+          `Name: ${orderName.value || "-"}`,
+          `Telefon: ${orderPhone.value || "-"}`,
+          "",
+          orderLines,
+          "",
+          `Gesamt: ${euro.format(total)}`,
+          `Notiz: ${orderNote.value || "-"}`
+        ].join("\n");
+
+        cartNote.textContent = "WhatsApp wird geöffnet.";
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+      });
+
+      renderCart();
+
       const parallaxSections = Array.from(document.querySelectorAll("[data-parallax]"));
       const updateParallax = () => {
         if (reducedMotion) return;
@@ -2552,9 +3522,19 @@
         });
       };
 
+      let parallaxQueued = false;
+      const requestParallax = () => {
+        if (parallaxQueued) return;
+        parallaxQueued = true;
+        window.requestAnimationFrame(() => {
+          parallaxQueued = false;
+          updateParallax();
+        });
+      };
+
       updateParallax();
-      window.addEventListener("scroll", updateParallax, { passive: true });
-      window.addEventListener("resize", updateParallax);
+      window.addEventListener("scroll", requestParallax, { passive: true });
+      window.addEventListener("resize", requestParallax);
 
       const starMarkup = Array.from({ length: 5 }, () => (
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.92 5.92 6.54.95-4.73 4.61 1.12 6.51L12 17.52l-5.85 3.07 1.12-6.51-4.73-4.61 6.54-.95L12 2.6Z"/></svg>'
@@ -2604,14 +3584,15 @@
       });
 
       if (!reducedMotion) {
-        for (let index = 0; index < 30; index += 1) {
+        const petalCount = window.innerWidth < 720 ? 8 : 14;
+        for (let index = 0; index < petalCount; index += 1) {
           const petal = document.createElement("span");
           petal.className = "petal";
           petal.style.left = `${Math.random() * 100}%`;
-          petal.style.animationDuration = `${10 + Math.random() * 13}s`;
+          petal.style.animationDuration = `${14 + Math.random() * 14}s`;
           petal.style.animationDelay = `${Math.random() * -18}s`;
           petal.style.setProperty("--drift", `${-60 + Math.random() * 120}px`);
-          petal.style.opacity = String(0.34 + Math.random() * 0.36);
+          petal.style.opacity = String(0.24 + Math.random() * 0.28);
           petal.style.transform = `rotate(${Math.random() * 90}deg)`;
           petalLayer.appendChild(petal);
         }
