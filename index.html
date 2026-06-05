@@ -744,73 +744,6 @@
       margin-bottom: 2.8rem;
     }
 
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .menu-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 390px;
-      border: 1px solid rgba(251, 244, 232, 0.13);
-      border-radius: var(--radius);
-      background: rgba(251, 244, 232, 0.05);
-      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.18);
-      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-    }
-
-    .menu-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(198, 161, 91, 0.55);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
-    }
-
-    .menu-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      transition: transform 0.55s ease, filter 0.55s ease;
-    }
-
-    .menu-card:hover img {
-      transform: scale(1.07);
-      filter: saturate(1.1);
-    }
-
-    .menu-body {
-      padding: 1rem;
-    }
-
-    .menu-body h3 {
-      margin: 0;
-      font-size: 1.34rem;
-      color: var(--ivory);
-    }
-
-    .menu-body p {
-      margin: 0.7rem 0 1.1rem;
-      min-height: 4.4em;
-      font-family: Arial, sans-serif;
-      font-size: 0.92rem;
-      line-height: 1.48;
-      color: rgba(251, 244, 232, 0.68);
-    }
-
-    .price {
-      display: inline-flex;
-      min-height: 32px;
-      align-items: center;
-      padding: 0 0.7rem;
-      border: 1px solid rgba(198, 161, 91, 0.42);
-      border-radius: 999px;
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-      color: var(--gold);
-      background: rgba(198, 161, 91, 0.08);
-    }
-
     .order-board {
       margin-top: 4rem;
       padding: 1.15rem;
@@ -1152,7 +1085,7 @@
 
     .menu-book {
       position: relative;
-      margin-top: 4rem;
+      margin-top: 0;
       padding: 1.15rem;
       border: 1px solid rgba(198, 161, 91, 0.34);
       border-radius: var(--radius);
@@ -1354,7 +1287,7 @@
       color: var(--ivory);
       background:
         linear-gradient(180deg, rgba(17, 16, 14, 0.92), rgba(94, 16, 20, 0.9)),
-        url("https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=1800&q=80");
+        url("assets/dishes/bbq-shrimp.jpg");
       background-size: cover;
       background-position: center calc(50% + var(--parallax-y, 0px));
     }
@@ -1625,9 +1558,9 @@
     .masonry {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: repeat(4, 142px);
+      grid-template-rows: repeat(3, 176px);
       gap: 1rem;
-      margin-top: 3rem;
+      margin-top: 2.4rem;
       padding: 1rem;
       border: 1px solid rgba(27, 23, 20, 0.1);
       border-radius: var(--radius);
@@ -1645,33 +1578,33 @@
     }
 
     .gallery-item:nth-child(1) {
-      grid-column: 1 / span 6;
+      grid-column: 1 / span 5;
       grid-row: 1 / span 2;
     }
 
     .gallery-item:nth-child(2) {
-      grid-column: 7 / span 3;
-      grid-row: 1 / span 4;
+      grid-column: 6 / span 4;
+      grid-row: 1 / span 2;
     }
 
     .gallery-item:nth-child(3) {
       grid-column: 10 / span 3;
-      grid-row: 1 / span 2;
+      grid-row: 1 / span 1;
     }
 
     .gallery-item:nth-child(4) {
-      grid-column: 1 / span 3;
-      grid-row: 3 / span 2;
+      grid-column: 10 / span 3;
+      grid-row: 2 / span 1;
     }
 
     .gallery-item:nth-child(5) {
-      grid-column: 4 / span 3;
-      grid-row: 3 / span 2;
+      grid-column: 1 / span 6;
+      grid-row: 3 / span 1;
     }
 
     .gallery-item:nth-child(6) {
-      grid-column: 10 / span 3;
-      grid-row: 3 / span 2;
+      grid-column: 7 / span 6;
+      grid-row: 3 / span 1;
     }
 
     .gallery-item img {
@@ -1679,6 +1612,24 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.7s ease, filter 0.7s ease;
+    }
+
+    .gallery-item:nth-child(1) img {
+      object-position: center 58%;
+    }
+
+    .gallery-item:nth-child(2) img {
+      object-position: 43% center;
+    }
+
+    .gallery-item:nth-child(3) img {
+      object-position: 62% center;
+    }
+
+    .gallery-item:nth-child(4) img,
+    .gallery-item:nth-child(5) img,
+    .gallery-item:nth-child(6) img {
+      object-position: center center;
     }
 
     .gallery-item:hover img {
@@ -1931,10 +1882,6 @@
     }
 
     @media (max-width: 1180px) {
-      .menu-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
       .culture-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -2058,10 +2005,6 @@
         display: block;
       }
 
-      .menu-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
       .order-tools {
         grid-template-columns: 1fr;
       }
@@ -2181,7 +2124,6 @@
         gap: 2.3rem;
       }
 
-      .menu-grid,
       .order-items,
       .culture-grid,
       .signature-gallery,
@@ -2292,7 +2234,7 @@
       </button>
       <ul class="nav-links" id="primaryNav">
         <li><a href="#about">Restaurant</a></li>
-        <li><a href="#menu">Speisekarte</a></li>
+        <li><a href="menu.pdf" target="_blank" rel="noopener">Menu</a></li>
         <li><a href="#order">Bestellen</a></li>
         <li><a href="#signature">Signature</a></li>
         <li><a href="#culture">Kultur</a></li>
@@ -2319,9 +2261,9 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z"/></svg>
             Jetzt reservieren
           </a>
-          <a class="btn btn-secondary" href="#menu">
+          <a class="btn btn-secondary" href="menu.pdf" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 3h12a2 2 0 0 1 2 2v16a1 1 0 0 1-1.47.88L12 18.39l-6.53 3.49A1 1 0 0 1 4 21V5a2 2 0 0 1 2-2Zm0 2v14.33l5.53-2.95a1 1 0 0 1 .94 0L18 19.33V5H6Zm3 4h6a1 1 0 1 1 0 2H9a1 1 0 0 1 0-2Zm0 4h6a1 1 0 1 1 0 2H9a1 1 0 1 1 0-2Z"/></svg>
-            Speisekarte ansehen
+            Menu PDF ansehen
           </a>
         </div>
       </div>
@@ -2378,93 +2320,49 @@
       <div class="section-shell">
         <div class="section-head reveal">
           <div>
-            <p class="section-kicker">Speisekarte</p>
-            <h2 class="section-title">Klassiker und moderne Kompositionen.</h2>
+            <p class="section-kicker">Menu</p>
+            <h2 class="section-title">SAKURHAN Speisekarte direkt ansehen.</h2>
           </div>
-          <p class="section-copy">Auswahl inspiriert von der SAKURHAN Karte: Sushi, Sashimi, Maki, Nigiri, warme Nudeln, Bowls, Bento und Desserts.</p>
+          <p class="section-copy">Die PDF-Speisekarte steht jetzt direkt am Anfang dieser Seite. Mit den Tasten blättern oder die PDF sofort in einem neuen Tab öffnen.</p>
         </div>
-        <div class="menu-grid">
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Sushi Auswahl auf dunklem Teller" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Sushi</h3>
-              <p>Fein abgestimmte Rollen und Platten mit Lachs, Thunfisch, Avocado, Ebi und hausgemachten Saucen.</p>
-              <span class="price">ab 14,90 €</span>
+
+        <aside class="menu-book reveal" id="originalMenu" aria-label="Originale Speisekarte als blätterbares PDF">
+          <div class="menu-book-head">
+            <div>
+              <p class="section-kicker">Original PDF</p>
+              <h3>SAKURHAN Menu</h3>
+              <p>Die komplette Karte wurde direkt aus <strong>menu.pdf</strong> übernommen. Nutzen Sie die Tasten, um wie in einem gedruckten Menü durch die Seiten zu blättern.</p>
             </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Sashimi mit frischem Fisch" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Sashimi</h3>
-              <p>Maguro, Sake oder gemischte Auswahl aus täglich frischem Fisch mit Tomaten-Salsa und Salat.</p>
-              <span class="price">ab 7,90 €</span>
+            <div class="menu-controls" aria-label="Speisekarte blättern">
+              <button class="menu-control" type="button" id="menuPrev" aria-label="Vorherige Seite">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.7 5.3a1 1 0 0 1 0 1.4L10.42 12l5.3 5.3a1 1 0 1 1-1.42 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.42 0Z"/></svg>
+                Zurück
+              </button>
+              <span class="menu-page-info" id="menuPageInfo">Seite 1-2 / 17</span>
+              <button class="menu-control" type="button" id="menuNext" aria-label="Nächste Seite">
+                Weiter
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8.3 18.7a1 1 0 0 1 0-1.4l5.28-5.3-5.3-5.3A1 1 0 1 1 9.7 5.3l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.42 0Z"/></svg>
+              </button>
+              <a class="menu-control" href="menu.pdf" target="_blank" rel="noopener" aria-label="PDF in neuem Tab öffnen">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 3h7v7h-2V6.41l-8.3 8.3-1.4-1.42 8.29-8.29H14V3ZM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg>
+                PDF öffnen
+              </a>
             </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Nigiri mit Lachs und Wasabi" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Nigiri</h3>
-              <p>Sake, Maguro, Ebi, Unagi, Tamago, Inari oder Avocado auf sanft gewürztem Sushi-Reis.</p>
-              <span class="price">ab 4,50 €</span>
-            </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Maki Rollen mit Lachs und Gurke" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Maki</h3>
-              <p>Acht Stück mit Sake, Tekka, Ebi, Salmon Skin, Avocado, Kappa oder Tamago.</p>
-              <span class="price">ab 4,50 €</span>
-            </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Handgerolltes Sushi" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Temaki</h3>
-              <p>Hand Rolls mit knusprigem Nori, Fisch, Gemüse, Reis und einem klaren, frischen Finish.</p>
-              <span class="price">ab 6,90 €</span>
-            </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Donburi Reisgericht mit Gemüse" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Donburi</h3>
-              <p>Warme Rice Bowls mit Lachs, knuspriger Ente, Rind, Garnelen oder Tofu und saisonalem Gemüse.</p>
-              <span class="price">ab 15,90 €</span>
-            </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Bento inspiriertes Gericht mit frischen Zutaten" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Bento</h3>
-              <p>Ausgewogene Kombinationen aus Sushi, Reis, Gemüse, Protein, Salat und feiner Sauce.</p>
-              <span class="price">ab 18,90 €</span>
-            </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Ramen Schale mit Ei und Gemüse" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Ramen</h3>
-              <p>Aromatische Brühe, Nudeln, Ei, Gemüse und wählbare Toppings für warme, tiefe Aromen.</p>
-              <span class="price">ab 14,90 €</span>
-            </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Udon Nudeln mit Gemüse" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Udon</h3>
-              <p>Gebratene Udon-Nudeln mit Ei, Pak Choi, Sojasprossen, Kräutern und spezieller Sauce.</p>
-              <span class="price">ab 14,90 €</span>
-            </div>
-          </article>
-          <article class="menu-card reveal">
-            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Japanisch inspiriertes Dessert mit Eis" width="700" height="520" loading="lazy" decoding="async">
-            <div class="menu-body">
-              <h3>Dessert</h3>
-              <p>Mango-Klebreis, Vanille-Creme, Mandelkuchen oder Schoko-Brownie mit Eiscreme.</p>
-              <span class="price">ab 6,90 €</span>
-            </div>
-          </article>
-        </div>
+          </div>
+          <div class="book-stage" id="menuBookStage">
+            <article class="book-page book-page-left" aria-label="Linke Menüseite">
+              <img id="menuPageLeft" src="assets/menu-pages/page-01.jpg" alt="SAKURHAN Speisekarte Seite 1" width="864" height="1222" loading="lazy" decoding="async">
+            </article>
+            <article class="book-page book-page-right" id="menuRightPage" aria-label="Rechte Menüseite">
+              <img id="menuPageRight" src="assets/menu-pages/page-02.jpg" alt="SAKURHAN Speisekarte Seite 2" width="864" height="1222" loading="lazy" decoding="async">
+              <span class="menu-empty-note" hidden>Ende der Speisekarte</span>
+            </article>
+          </div>
+          <div class="menu-book-foot">
+            <span>17 Seiten · Originaldatei aus dem Projektordner</span>
+            <a href="menu.pdf" download>menu.pdf herunterladen</a>
+          </div>
+        </aside>
 
         <section class="order-board reveal" id="order" aria-label="Online bestellen">
           <div class="order-head">
@@ -2629,43 +2527,6 @@
           </div>
         </section>
 
-        <aside class="menu-book reveal" id="originalMenu" aria-label="Originale Speisekarte als blätterbares PDF">
-          <div class="menu-book-head">
-            <div>
-              <p class="section-kicker">Original PDF</p>
-              <h3>SAKURHAN Speisekarte</h3>
-              <p>Die komplette Karte wurde direkt aus <strong>menu.pdf</strong> übernommen. Nutzen Sie die Tasten, um wie in einem gedruckten Menü durch die Seiten zu blättern.</p>
-            </div>
-            <div class="menu-controls" aria-label="Speisekarte blättern">
-              <button class="menu-control" type="button" id="menuPrev" aria-label="Vorherige Seite">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.7 5.3a1 1 0 0 1 0 1.4L10.42 12l5.3 5.3a1 1 0 1 1-1.42 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.42 0Z"/></svg>
-                Zurück
-              </button>
-              <span class="menu-page-info" id="menuPageInfo">Seite 1-2 / 17</span>
-              <button class="menu-control" type="button" id="menuNext" aria-label="Nächste Seite">
-                Weiter
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8.3 18.7a1 1 0 0 1 0-1.4l5.28-5.3-5.3-5.3A1 1 0 1 1 9.7 5.3l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.42 0Z"/></svg>
-              </button>
-              <a class="menu-control" href="menu.pdf" target="_blank" rel="noopener" aria-label="PDF in neuem Tab öffnen">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 3h7v7h-2V6.41l-8.3 8.3-1.4-1.42 8.29-8.29H14V3ZM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg>
-                PDF öffnen
-              </a>
-            </div>
-          </div>
-          <div class="book-stage" id="menuBookStage">
-            <article class="book-page book-page-left" aria-label="Linke Menüseite">
-              <img id="menuPageLeft" src="assets/menu-pages/page-01.jpg" alt="SAKURHAN Speisekarte Seite 1" width="864" height="1222" loading="lazy" decoding="async">
-            </article>
-            <article class="book-page book-page-right" id="menuRightPage" aria-label="Rechte Menüseite">
-              <img id="menuPageRight" src="assets/menu-pages/page-02.jpg" alt="SAKURHAN Speisekarte Seite 2" width="864" height="1222" loading="lazy" decoding="async">
-              <span class="menu-empty-note" hidden>Ende der Speisekarte</span>
-            </article>
-          </div>
-          <div class="menu-book-foot">
-            <span>17 Seiten · Originaldatei aus dem Projektordner</span>
-            <a href="menu.pdf" download>menu.pdf herunterladen</a>
-          </div>
-        </aside>
       </div>
     </section>
 
@@ -2680,38 +2541,38 @@
         </div>
         <div class="signature-gallery">
           <figure class="signature-card reveal">
-            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=1100&q=80" alt="Omakase Premium Sushi und Sashimi Platte" width="1100" height="900" loading="lazy" decoding="async">
+            <img src="assets/dishes/sashimi.jpg" alt="Sashimi Auswahl auf SAKURHAN Teller" width="1100" height="900" loading="lazy" decoding="async">
             <figcaption>
-              <h3>Omakase Premium</h3>
-              <p>Chef-Auswahl · ab 47,00 €</p>
+              <h3>Sashimi Selection</h3>
+              <p>Sake · Maguro · frische Auswahl</p>
             </figcaption>
           </figure>
           <figure class="signature-card reveal">
-            <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=900&q=80" alt="Dragon Roll mit Avocado und Sauce" width="900" height="650" loading="lazy" decoding="async">
+            <img src="assets/dishes/udon-xao.jpg" alt="Udon Xao mit krosser Ente" width="900" height="650" loading="lazy" decoding="async">
             <figcaption>
-              <h3>Dragon Roll</h3>
-              <p>Avocado · Ebi · Unagi</p>
+              <h3>Udon Xao Ente</h3>
+              <p>Gebratene Udon · Gemüse · Sauce</p>
             </figcaption>
           </figure>
           <figure class="signature-card reveal">
-            <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=900&q=80" alt="Salmon Sashimi Deluxe" width="900" height="650" loading="lazy" decoding="async">
+            <img src="assets/dishes/tom-chien-xu.jpg" alt="Knusprige Ebi Tempura auf SAKURHAN Schieferplatte" width="900" height="650" loading="lazy" decoding="async">
             <figcaption>
-              <h3>Salmon Sashimi Deluxe</h3>
-              <p>Sake · Sesam · Salsa</p>
+              <h3>Ebi Tempura</h3>
+              <p>Knusprig · Dip · Zitrone</p>
             </figcaption>
           </figure>
           <figure class="signature-card reveal">
-            <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=900&q=80" alt="Wagyu Nigiri Komposition" width="900" height="650" loading="lazy" decoding="async">
+            <img src="assets/dishes/bbq-calamari.jpg" alt="Gegrillter Tintenfisch mit Gemüse auf SAKURHAN Teller" width="900" height="650" loading="lazy" decoding="async">
             <figcaption>
-              <h3>Wagyu Nigiri</h3>
-              <p>Flambiert · Yuzu · Reis</p>
+              <h3>Tintenfisch BBQ</h3>
+              <p>Grill · Gemüse · Sauce</p>
             </figcaption>
           </figure>
           <figure class="signature-card reveal">
-            <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=900&q=80" alt="Kinza Special Roll" width="900" height="650" loading="lazy" decoding="async">
+            <img src="assets/dishes/bbq-shrimp.jpg" alt="Gegrillte Garnelen mit Spargel auf SAKURHAN Teller" width="900" height="650" loading="lazy" decoding="async">
             <figcaption>
-              <h3>Kinza Special Roll</h3>
-              <p>Hausrolle · Gold-Akzent</p>
+              <h3>BBQ Garnelen</h3>
+              <p>Grill · Spargel · Sauce</p>
             </figcaption>
           </figure>
         </div>
@@ -2837,34 +2698,34 @@
         <div class="section-head reveal">
           <div>
             <p class="section-kicker">Galerie</p>
-            <h2 class="section-title">Sushi, Raum und japanische Stimmung.</h2>
+            <h2 class="section-title">Gerichte aus der SAKURHAN Karte.</h2>
           </div>
-          <p class="section-copy">Eine visuelle Collage aus Küche, Kultur und Atmosphäre mit sanftem Zoom auf Hover.</p>
+          <p class="section-copy">Eine ruhigere Food-Galerie mit eigenen Bildern aus Sashimi, Udon, Tempura und BBQ-Gerichten.</p>
         </div>
         <div class="masonry">
           <figure class="gallery-item wide reveal">
-            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=900&q=80" alt="Frische Sushi Auswahl" width="900" height="520" loading="lazy" decoding="async">
-            <span>Sushi</span>
-          </figure>
-          <figure class="gallery-item tall reveal">
-            <img src="https://images.unsplash.com/photo-1752135534175-44aa59a1bb50?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Sushi-Köche im Restaurant" width="700" height="920" loading="lazy" decoding="async">
-            <span>Küche</span>
+            <img src="assets/dishes/sashimi.jpg" alt="Frische Sashimi Auswahl auf SAKURHAN Teller" width="900" height="520" loading="lazy" decoding="async">
+            <span>Sashimi</span>
           </figure>
           <figure class="gallery-item reveal">
-            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Restaurant Innenraum" width="700" height="520" loading="lazy" decoding="async">
-            <span>Ambiente</span>
+            <img src="assets/dishes/udon-xao.jpg" alt="Udon Xao mit krosser Ente auf SAKURHAN Teller" width="700" height="920" loading="lazy" decoding="async">
+            <span>Udon Xao</span>
           </figure>
           <figure class="gallery-item reveal">
-            <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Sakura Blüten" width="700" height="520" loading="lazy" decoding="async">
-            <span>Sakura</span>
+            <img src="assets/dishes/tom-chien-xu.jpg" alt="Tom Chien Xu mit Dip und Zitrone" width="700" height="520" loading="lazy" decoding="async">
+            <span>Tom Chien Xu</span>
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="assets/dishes/bbq-calamari.jpg" alt="BBQ Tintenfisch mit Gemüse" width="700" height="520" loading="lazy" decoding="async">
+            <span>BBQ</span>
           </figure>
           <figure class="gallery-item wide reveal">
-            <img src="https://images.unsplash.com/photo-1757770331522-e7542553ec87?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=900&q=80" alt="Sushi-Chef bei der Arbeit" width="900" height="520" loading="lazy" decoding="async">
-            <span>Chef</span>
+            <img src="assets/dishes/bbq-shrimp.jpg" alt="Ganze Garnelen vom Grill mit Spargel" width="900" height="520" loading="lazy" decoding="async">
+            <span>BBQ Garnelen</span>
           </figure>
           <figure class="gallery-item reveal">
-            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=700&q=80" alt="Japanische Architektur" width="700" height="520" loading="lazy" decoding="async">
-            <span>Kultur</span>
+            <img src="assets/dishes/bbq-salmon.jpg" alt="Lachsgericht mit Grillgemüse auf SAKURHAN Teller" width="700" height="520" loading="lazy" decoding="async">
+            <span>Lachs</span>
           </figure>
         </div>
       </div>
@@ -2945,7 +2806,7 @@
           Deutschland
         </address>
         <div class="socials" aria-label="Social Media">
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.facebook.com/share/1Cigfgu8mg/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
           <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a>
         </div>
