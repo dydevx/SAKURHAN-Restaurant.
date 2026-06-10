@@ -2515,8 +2515,8 @@
                 <strong id="cartTotal">0,00 €</strong>
               </div>
               <div class="order-fields">
-                <input id="orderName" type="text" autocomplete="name" placeholder="Name für die Bestellung">
-                <input id="orderPhone" type="tel" autocomplete="tel" placeholder="Telefonnummer">
+                <input id="orderName" type="text" autocomplete="name" placeholder="Name für die Bestellung" required>
+                <input id="orderPhone" type="tel" autocomplete="tel" placeholder="Telefonnummer" required>
                 <textarea id="orderNote" placeholder="Notiz, Abholzeit, Allergien"></textarea>
               </div>
               <div class="cart-actions">
@@ -3275,6 +3275,7 @@
 
       const cart = new Map();
       const whatsappNumber = "4921918428318";
+      const restaurantEmail = "sakurhanrestaurant@gmail.com";
 
       const getCartLines = () => Array.from(cart.values());
 
@@ -3347,10 +3348,32 @@
         renderCart();
       });
 
+      const openPreparedMessage = (whatsappMessage, emailSubject, emailBody, statusElement, successText) => {
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+        const emailUrl = `mailto:${restaurantEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        const popup = window.open(whatsappUrl, "_blank");
+        if (popup) popup.opener = null;
+
+        statusElement.innerHTML = `
+          ${escapeHtml(successText)}
+          <a href="${emailUrl}">Falls WhatsApp nicht funktioniert, Anfrage per E-Mail senden.</a>
+        `;
+
+        if (!popup) {
+          window.location.href = whatsappUrl;
+        }
+      };
+
       sendWhatsApp.addEventListener("click", () => {
         const lines = getCartLines();
         if (!lines.length) {
           cartNote.textContent = "Bitte wählen Sie zuerst mindestens ein Gericht aus.";
+          return;
+        }
+
+        if (!orderName.value.trim() || !orderPhone.value.trim()) {
+          cartNote.textContent = "Bitte geben Sie Name und Telefonnummer ein.";
+          (!orderName.value.trim() ? orderName : orderPhone).focus();
           return;
         }
 
@@ -3362,17 +3385,22 @@
         const message = [
           "SAKURHAN Bestellung",
           "",
-          `Name: ${orderName.value || "-"}`,
-          `Telefon: ${orderPhone.value || "-"}`,
+          `Name: ${orderName.value.trim()}`,
+          `Telefon: ${orderPhone.value.trim()}`,
           "",
           orderLines,
           "",
           `Gesamt: ${euro.format(total)}`,
-          `Notiz: ${orderNote.value || "-"}`
+          `Notiz: ${orderNote.value.trim() || "-"}`
         ].join("\n");
 
-        cartNote.textContent = "WhatsApp wird geöffnet.";
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+        openPreparedMessage(
+          message,
+          "SAKURHAN Bestellung",
+          message,
+          cartNote,
+          "Bestellung wurde vorbereitet. WhatsApp wird geöffnet."
+        );
       });
 
       renderCart();
@@ -3446,7 +3474,25 @@
         event.preventDefault();
         const formData = new FormData(reservationForm);
         const guestName = formData.get("name");
-        formStatus.textContent = `Vielen Dank, ${guestName}. Ihre Anfrage wurde vorbereitet. Wir melden uns zeitnah.`;
+        const reservationMessage = [
+          "SAKURHAN Reservierung",
+          "",
+          `Name: ${guestName}`,
+          `Telefon: ${formData.get("phone")}`,
+          `E-Mail: ${formData.get("email")}`,
+          `Datum: ${formData.get("date")}`,
+          `Uhrzeit: ${formData.get("time")}`,
+          `Gäste: ${formData.get("guests")}`,
+          `Notiz: ${formData.get("note") || "-"}`
+        ].join("\n");
+
+        openPreparedMessage(
+          reservationMessage,
+          "SAKURHAN Reservierungsanfrage",
+          reservationMessage,
+          formStatus,
+          `Vielen Dank, ${guestName}. Ihre Reservierungsanfrage wurde vorbereitet.`
+        );
         reservationForm.reset();
       });
 
