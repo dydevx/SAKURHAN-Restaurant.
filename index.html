@@ -1729,6 +1729,15 @@
       padding: 0.78rem 0.85rem;
     }
 
+    .field select option {
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    .field select option:disabled {
+      color: var(--muted);
+    }
+
     .field textarea {
       min-height: 124px;
       resize: vertical;
@@ -2372,8 +2381,8 @@
           <div class="order-head">
             <div>
               <p class="section-kicker">Online bestellen</p>
-              <h3>Warenkorb & Rechnung per WhatsApp</h3>
-              <p>Alle bestellbaren Positionen aus der SAKURHAN PDF-Karte sind hier nach Kategorien sortiert. Suchen, auswählen, Gesamtbetrag prüfen und direkt als vorbereitete WhatsApp-Nachricht senden.</p>
+              <h3>Warenkorb & Bestellung per E-Mail</h3>
+              <p>Alle bestellbaren Positionen aus der SAKURHAN PDF-Karte sind hier nach Kategorien sortiert. Suchen, auswählen, Gesamtbetrag prüfen und direkt per E-Mail senden.</p>
             </div>
           </div>
           <div class="order-tools" aria-label="Menü filtern">
@@ -2520,13 +2529,25 @@
                 <textarea id="orderNote" placeholder="Notiz, Abholzeit, Allergien"></textarea>
               </div>
               <div class="cart-actions">
-                <button class="btn btn-primary" type="button" id="sendWhatsApp">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.48 15.02L2.2 22l5.1-1.34A9.94 9.94 0 1 0 12.04 2Zm0 1.98a7.96 7.96 0 0 1 6.78 12.13 7.94 7.94 0 0 1-10.78 2.9l-.37-.22-3.02.8.81-2.95-.24-.39a7.95 7.95 0 0 1 6.82-12.27Zm-3.3 3.95c-.17 0-.44.06-.67.32-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.75 2.8 4.32 3.82 2.14.84 2.58.67 3.04.63.47-.04 1.5-.61 1.72-1.2.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.49-.3-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.57.13-.17.25-.65.82-.8.99-.15.17-.3.19-.55.06-.25-.13-1.07-.4-2.04-1.27-.75-.67-1.26-1.5-1.41-1.76-.15-.25-.02-.39.11-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.5Z"/></svg>
-                  Rechnung per WhatsApp senden
+                <button class="btn btn-primary" type="button" id="sendOrderEmail">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5.5A2.5 2.5 0 0 1 5.5 3h13A2.5 2.5 0 0 1 21 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5v-13Zm2.5-.5a.5.5 0 0 0-.5.5v.82l7 4.2 7-4.2V5.5a.5.5 0 0 0-.5-.5h-13ZM19 8.65l-6.49 3.89a1 1 0 0 1-1.02 0L5 8.65v9.85a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V8.65Z"/></svg>
+                  Bestellung per E-Mail senden
                 </button>
                 <button class="btn btn-secondary" type="button" id="clearCart">Warenkorb leeren</button>
               </div>
               <p class="cart-note" id="cartNote" aria-live="polite"></p>
+              <form class="order-email-form" id="orderEmailForm" action="https://formsubmit.co/e007154588f4841291587fa6a69ad646" method="POST" hidden>
+                <input type="hidden" name="_subject" value="SAKURHAN Bestellung">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" id="orderNext" value="">
+                <input type="hidden" name="Typ" value="Bestellung">
+                <input type="hidden" name="Name" id="orderEmailName" value="">
+                <input type="hidden" name="Telefon" id="orderEmailPhone" value="">
+                <input type="hidden" name="Bestellung" id="orderEmailItems" value="">
+                <input type="hidden" name="Gesamt" id="orderEmailTotal" value="">
+                <input type="hidden" name="Notiz" id="orderEmailNote" value="">
+              </form>
             </aside>
           </div>
         </section>
@@ -2747,7 +2768,12 @@
             <p><strong>Öffnungszeiten:</strong><br>Mo-Do und So: 11:30 - 15:00 Uhr / 17:00 - 22:00 Uhr<br>Fr-Sa / Feiertage: 11:30 - 15:00 Uhr / 17:00 - 23:00 Uhr</p>
           </div>
         </div>
-        <form class="reservation-form reveal" id="reservationForm">
+        <form class="reservation-form reveal" id="reservationForm" action="https://formsubmit.co/e007154588f4841291587fa6a69ad646" method="POST">
+          <input type="hidden" name="_subject" value="SAKURHAN Reservierungsanfrage">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" id="reservationNext" value="">
+          <input type="hidden" name="Typ" value="Reservierung">
           <div class="field">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" autocomplete="name" placeholder="Ihr Name" required>
@@ -2771,7 +2797,7 @@
           <div class="field">
             <label for="guests">Gäste</label>
             <select id="guests" name="guests" required>
-              <option value="">Auswählen</option>
+              <option value="" disabled selected>Auswählen</option>
               <option>1 Person</option>
               <option>2 Personen</option>
               <option>3 Personen</option>
@@ -2864,11 +2890,18 @@
       const cartCount = document.getElementById("cartCount");
       const cartTotal = document.getElementById("cartTotal");
       const clearCart = document.getElementById("clearCart");
-      const sendWhatsApp = document.getElementById("sendWhatsApp");
+      const sendOrderEmail = document.getElementById("sendOrderEmail");
       const cartNote = document.getElementById("cartNote");
       const orderName = document.getElementById("orderName");
       const orderPhone = document.getElementById("orderPhone");
       const orderNote = document.getElementById("orderNote");
+      const orderEmailForm = document.getElementById("orderEmailForm");
+      const orderNext = document.getElementById("orderNext");
+      const orderEmailName = document.getElementById("orderEmailName");
+      const orderEmailPhone = document.getElementById("orderEmailPhone");
+      const orderEmailItems = document.getElementById("orderEmailItems");
+      const orderEmailTotal = document.getElementById("orderEmailTotal");
+      const orderEmailNote = document.getElementById("orderEmailNote");
       const orderSearch = document.getElementById("orderSearch");
       const categoryFilters = document.getElementById("categoryFilters");
       const orderSummary = document.getElementById("orderSummary");
@@ -3274,8 +3307,6 @@
       renderMenuItems();
 
       const cart = new Map();
-      const whatsappNumber = "4921918428318";
-      const restaurantEmail = "sakurhanrestaurant@gmail.com";
 
       const getCartLines = () => Array.from(cart.values());
 
@@ -3348,23 +3379,7 @@
         renderCart();
       });
 
-      const openPreparedMessage = (whatsappMessage, emailSubject, emailBody, statusElement, successText) => {
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-        const emailUrl = `mailto:${restaurantEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-        const popup = window.open(whatsappUrl, "_blank");
-        if (popup) popup.opener = null;
-
-        statusElement.innerHTML = `
-          ${escapeHtml(successText)}
-          <a href="${emailUrl}">Falls WhatsApp nicht funktioniert, Anfrage per E-Mail senden.</a>
-        `;
-
-        if (!popup) {
-          window.location.href = whatsappUrl;
-        }
-      };
-
-      sendWhatsApp.addEventListener("click", () => {
+      sendOrderEmail.addEventListener("click", () => {
         const lines = getCartLines();
         if (!lines.length) {
           cartNote.textContent = "Bitte wählen Sie zuerst mindestens ein Gericht aus.";
@@ -3382,25 +3397,14 @@
           .map((item) => `${item.quantity}x ${item.name} - ${euro.format(item.price * item.quantity)}`)
           .join("\n");
 
-        const message = [
-          "SAKURHAN Bestellung",
-          "",
-          `Name: ${orderName.value.trim()}`,
-          `Telefon: ${orderPhone.value.trim()}`,
-          "",
-          orderLines,
-          "",
-          `Gesamt: ${euro.format(total)}`,
-          `Notiz: ${orderNote.value.trim() || "-"}`
-        ].join("\n");
-
-        openPreparedMessage(
-          message,
-          "SAKURHAN Bestellung",
-          message,
-          cartNote,
-          "Bestellung wurde vorbereitet. WhatsApp wird geöffnet."
-        );
+        orderNext.value = `${window.location.origin}${window.location.pathname}#order`;
+        orderEmailName.value = orderName.value.trim();
+        orderEmailPhone.value = orderPhone.value.trim();
+        orderEmailItems.value = orderLines;
+        orderEmailTotal.value = euro.format(total);
+        orderEmailNote.value = orderNote.value.trim() || "-";
+        cartNote.textContent = "Bestellung wird per E-Mail gesendet.";
+        orderEmailForm.submit();
       });
 
       renderCart();
@@ -3471,29 +3475,9 @@
       document.getElementById("date").min = `${yyyy}-${mm}-${dd}`;
 
       reservationForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const formData = new FormData(reservationForm);
-        const guestName = formData.get("name");
-        const reservationMessage = [
-          "SAKURHAN Reservierung",
-          "",
-          `Name: ${guestName}`,
-          `Telefon: ${formData.get("phone")}`,
-          `E-Mail: ${formData.get("email")}`,
-          `Datum: ${formData.get("date")}`,
-          `Uhrzeit: ${formData.get("time")}`,
-          `Gäste: ${formData.get("guests")}`,
-          `Notiz: ${formData.get("note") || "-"}`
-        ].join("\n");
-
-        openPreparedMessage(
-          reservationMessage,
-          "SAKURHAN Reservierungsanfrage",
-          reservationMessage,
-          formStatus,
-          `Vielen Dank, ${guestName}. Ihre Reservierungsanfrage wurde vorbereitet.`
-        );
-        reservationForm.reset();
+        if (!reservationForm.checkValidity()) return;
+        document.getElementById("reservationNext").value = `${window.location.origin}${window.location.pathname}#reservation`;
+        formStatus.textContent = "Reservierungsanfrage wird per E-Mail gesendet.";
       });
 
       if (!reducedMotion) {
