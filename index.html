@@ -2536,18 +2536,6 @@
                 <button class="btn btn-secondary" type="button" id="clearCart">Warenkorb leeren</button>
               </div>
               <p class="cart-note" id="cartNote" aria-live="polite"></p>
-              <form class="order-email-form" id="orderEmailForm" action="https://formsubmit.co/e007154588f4841291587fa6a69ad646" method="POST" hidden>
-                <input type="hidden" name="_subject" value="SAKURHAN Bestellung">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" id="orderNext" value="">
-                <input type="hidden" name="Typ" value="Bestellung">
-                <input type="hidden" name="Name" id="orderEmailName" value="">
-                <input type="hidden" name="Telefon" id="orderEmailPhone" value="">
-                <input type="hidden" name="Bestellung" id="orderEmailItems" value="">
-                <input type="hidden" name="Gesamt" id="orderEmailTotal" value="">
-                <input type="hidden" name="Notiz" id="orderEmailNote" value="">
-              </form>
             </aside>
           </div>
         </section>
@@ -2768,12 +2756,7 @@
             <p><strong>Öffnungszeiten:</strong><br>Mo-Do und So: 11:30 - 15:00 Uhr / 17:00 - 22:00 Uhr<br>Fr-Sa / Feiertage: 11:30 - 15:00 Uhr / 17:00 - 23:00 Uhr</p>
           </div>
         </div>
-        <form class="reservation-form reveal" id="reservationForm" action="https://formsubmit.co/e007154588f4841291587fa6a69ad646" method="POST">
-          <input type="hidden" name="_subject" value="SAKURHAN Reservierungsanfrage">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" id="reservationNext" value="">
-          <input type="hidden" name="Typ" value="Reservierung">
+        <form class="reservation-form reveal" id="reservationForm">
           <div class="field">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" autocomplete="name" placeholder="Ihr Name" required>
@@ -2895,17 +2878,11 @@
       const orderName = document.getElementById("orderName");
       const orderPhone = document.getElementById("orderPhone");
       const orderNote = document.getElementById("orderNote");
-      const orderEmailForm = document.getElementById("orderEmailForm");
-      const orderNext = document.getElementById("orderNext");
-      const orderEmailName = document.getElementById("orderEmailName");
-      const orderEmailPhone = document.getElementById("orderEmailPhone");
-      const orderEmailItems = document.getElementById("orderEmailItems");
-      const orderEmailTotal = document.getElementById("orderEmailTotal");
-      const orderEmailNote = document.getElementById("orderEmailNote");
       const orderSearch = document.getElementById("orderSearch");
       const categoryFilters = document.getElementById("categoryFilters");
       const orderSummary = document.getElementById("orderSummary");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const mailRecipient = "sakurhanrestaurant@gmail.com";
 
       const hideLoader = () => loader && loader.classList.add("is-hidden");
       window.addEventListener("load", hideLoader, { once: true });
@@ -3256,6 +3233,20 @@
         "'": "&#39;"
       })[char]);
 
+      const openMailDraft = (subject, body) => {
+        const gmailUrl = new URL("https://mail.google.com/mail/");
+        gmailUrl.searchParams.set("view", "cm");
+        gmailUrl.searchParams.set("fs", "1");
+        gmailUrl.searchParams.set("to", mailRecipient);
+        gmailUrl.searchParams.set("su", subject);
+        gmailUrl.searchParams.set("body", body);
+
+        const gmailWindow = window.open(gmailUrl.toString(), "_blank", "noopener,noreferrer");
+        if (!gmailWindow) {
+          window.location.href = `mailto:${mailRecipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+      };
+
       const normalize = (value) => String(value).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
       const renderCategoryFilters = () => {
@@ -3397,14 +3388,20 @@
           .map((item) => `${item.quantity}x ${item.name} - ${euro.format(item.price * item.quantity)}`)
           .join("\n");
 
-        orderNext.value = `${window.location.origin}${window.location.pathname}#order`;
-        orderEmailName.value = orderName.value.trim();
-        orderEmailPhone.value = orderPhone.value.trim();
-        orderEmailItems.value = orderLines;
-        orderEmailTotal.value = euro.format(total);
-        orderEmailNote.value = orderNote.value.trim() || "-";
-        cartNote.textContent = "Bestellung wird per E-Mail gesendet.";
-        orderEmailForm.submit();
+        const orderBody = [
+          "SAKURHAN Bestellung",
+          "",
+          `Name: ${orderName.value.trim()}`,
+          `Telefon: ${orderPhone.value.trim()}`,
+          "",
+          orderLines,
+          "",
+          `Gesamt: ${euro.format(total)}`,
+          `Notiz: ${orderNote.value.trim() || "-"}`
+        ].join("\n");
+
+        openMailDraft("SAKURHAN Bestellung", orderBody);
+        cartNote.textContent = "Gmail wurde mit den Bestelldaten geöffnet. Bitte prüfen und senden.";
       });
 
       renderCart();
@@ -3475,9 +3472,27 @@
       document.getElementById("date").min = `${yyyy}-${mm}-${dd}`;
 
       reservationForm.addEventListener("submit", (event) => {
-        if (!reservationForm.checkValidity()) return;
-        document.getElementById("reservationNext").value = `${window.location.origin}${window.location.pathname}#reservation`;
-        formStatus.textContent = "Reservierungsanfrage wird per E-Mail gesendet.";
+        event.preventDefault();
+        if (!reservationForm.checkValidity()) {
+          reservationForm.reportValidity();
+          return;
+        }
+
+        const formData = new FormData(reservationForm);
+        const reservationBody = [
+          "SAKURHAN Reservierung",
+          "",
+          `Name: ${formData.get("name")}`,
+          `Telefon: ${formData.get("phone")}`,
+          `E-Mail: ${formData.get("email")}`,
+          `Datum: ${formData.get("date")}`,
+          `Uhrzeit: ${formData.get("time")}`,
+          `Gäste: ${formData.get("guests")}`,
+          `Notiz: ${formData.get("note") || "-"}`
+        ].join("\n");
+
+        openMailDraft("SAKURHAN Reservierungsanfrage", reservationBody);
+        formStatus.textContent = "Gmail wurde mit den Reservierungsdaten geöffnet. Bitte prüfen und senden.";
       });
 
       if (!reducedMotion) {
