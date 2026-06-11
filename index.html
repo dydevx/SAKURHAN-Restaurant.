@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="preconnect" href="https://www.google.com">
   <link rel="dns-prefetch" href="https://www.gstatic.com">
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=1800&q=80">
+  <link rel="preload" as="image" href="hero.png">
   <style>
     :root {
       --red: #8f1d21;
@@ -405,9 +405,9 @@
       isolation: isolate;
       background-image:
         linear-gradient(90deg, rgba(17, 16, 14, 0.78), rgba(17, 16, 14, 0.46) 52%, rgba(94, 16, 20, 0.68)),
-        url("https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&w=1800&q=80");
+        url("hero.png");
       background-size: cover;
-      background-position: center calc(50% + var(--parallax-y, 0px));
+      background-position: 52% calc(78% + var(--parallax-y, 0px));
     }
 
     .hero::before {
@@ -426,9 +426,9 @@
       content: "";
       position: absolute;
       inset: auto 0 0;
-      height: 170px;
+      height: 108px;
       z-index: -1;
-      background: linear-gradient(0deg, var(--ivory), transparent);
+      background: linear-gradient(0deg, var(--ivory) 0%, rgba(251, 244, 232, 0.72) 38%, transparent 100%);
     }
 
     .hero-art {
@@ -2090,6 +2090,7 @@
 
       .hero {
         min-height: calc(100vh - 110px);
+        background-position: 50% calc(72% + var(--parallax-y, 0px));
       }
 
       .hero-logo {
