@@ -2896,6 +2896,7 @@
       const orderSummary = document.getElementById("orderSummary");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const mailRecipient = "sakurhanrestaurant@gmail.com";
+      const mailCcRecipient = "thuhandsonbeo@gmail.com";
 
       const hideLoader = () => loader && loader.classList.add("is-hidden");
       window.addEventListener("load", hideLoader, { once: true });
@@ -3251,12 +3252,13 @@
         gmailUrl.searchParams.set("view", "cm");
         gmailUrl.searchParams.set("fs", "1");
         gmailUrl.searchParams.set("to", mailRecipient);
+        gmailUrl.searchParams.set("cc", mailCcRecipient);
         gmailUrl.searchParams.set("su", subject);
         gmailUrl.searchParams.set("body", body);
 
         const gmailWindow = window.open(gmailUrl.toString(), "_blank", "noopener,noreferrer");
         if (!gmailWindow) {
-          window.location.href = `mailto:${mailRecipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = `mailto:${mailRecipient}?cc=${encodeURIComponent(mailCcRecipient)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
       };
 
