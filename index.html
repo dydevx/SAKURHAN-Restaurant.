@@ -3362,6 +3362,17 @@
         return params.toString();
       };
 
+      const openSameTabLink = (url) => {
+        const link = document.createElement("a");
+        link.href = url;
+        link.target = "_self";
+        link.rel = "noopener";
+        link.style.display = "none";
+        document.body.append(link);
+        link.click();
+        link.remove();
+      };
+
       const openMailDraft = (subject, body) => {
         const mailtoUrl = `mailto:${mailRecipient}?${buildQueryString({
           cc: mailCcRecipient,
@@ -3370,17 +3381,23 @@
         })}`;
 
         if (isIOSDevice()) {
-          const gmailIOSUrl = `googlegmail:///co?${buildQueryString({
+          const gmailIOSUrl = `googlegmail://co?${buildQueryString({
+            to: mailRecipient,
+            cc: mailCcRecipient,
+            subject,
+            body
+          })}`;
+          const gmailIOSAltUrl = `googlegmail:///co?${buildQueryString({
             to: mailRecipient,
             cc: mailCcRecipient,
             subject,
             body
           })}`;
           let didLeavePage = false;
-          let fallbackTimer;
+          const fallbackTimers = [];
 
           function cleanup() {
-            window.clearTimeout(fallbackTimer);
+            fallbackTimers.forEach((timer) => window.clearTimeout(timer));
             window.removeEventListener("pagehide", markLeft);
             document.removeEventListener("visibilitychange", handleVisibilityChange);
           }
@@ -3396,12 +3413,15 @@
 
           window.addEventListener("pagehide", markLeft);
           document.addEventListener("visibilitychange", handleVisibilityChange);
-          fallbackTimer = window.setTimeout(() => {
+          fallbackTimers.push(window.setTimeout(() => {
+            if (!didLeavePage) openSameTabLink(gmailIOSAltUrl);
+          }, 900));
+          fallbackTimers.push(window.setTimeout(() => {
             cleanup();
             if (!didLeavePage) window.location.href = mailtoUrl;
-          }, 1600);
+          }, 2400));
 
-          window.location.href = gmailIOSUrl;
+          openSameTabLink(gmailIOSUrl);
           return;
         }
 
