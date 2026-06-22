@@ -3360,9 +3360,13 @@
         gmailUrl.searchParams.set("su", subject);
         gmailUrl.searchParams.set("body", body);
 
-        const gmailWindow = window.open(gmailUrl.toString(), "_blank", "noopener,noreferrer");
+        const gmailWindow = window.open(
+          gmailUrl.toString(),
+          "sakurhanGmailCompose",
+          "popup=yes,width=760,height=760,noopener,noreferrer"
+        );
         if (!gmailWindow) {
-          window.location.href = `mailto:${mailRecipient}?cc=${encodeURIComponent(mailCcRecipient)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = gmailUrl.toString();
         }
       };
 
