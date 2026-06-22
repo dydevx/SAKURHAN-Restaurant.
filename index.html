@@ -830,7 +830,7 @@
 
     .order-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
       align-items: start;
     }
@@ -840,9 +840,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.8rem;
       align-content: start;
-      max-height: 820px;
-      overflow: auto;
-      padding-right: 0.35rem;
     }
 
     .order-item {
@@ -918,14 +915,38 @@
     }
 
     .cart-panel {
-      position: sticky;
-      top: 96px;
+      position: fixed;
+      top: calc(var(--header-height) + 1rem);
+      right: 1rem;
+      z-index: 42;
+      width: min(420px, calc(100vw - 2rem));
+      max-height: calc(100vh - var(--header-height) - 2rem);
+      overflow-y: auto;
       padding: 1rem;
       border: 1px solid rgba(251, 244, 232, 0.14);
       border-radius: var(--radius);
       background: rgba(8, 7, 6, 0.76);
       box-shadow: var(--shadow-dark);
       font-family: Arial, sans-serif;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(calc(100% + 1.5rem));
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      backdrop-filter: blur(18px);
+    }
+
+    .cart-panel.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    .cart-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .cart-panel h3 {
@@ -933,9 +954,84 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin: 0 0 0.8rem;
+      margin: 0;
       font-size: 1.1rem;
       color: var(--ivory);
+    }
+
+    .cart-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(251, 244, 232, 0.16);
+      border-radius: 50%;
+      color: var(--ivory);
+      background: rgba(251, 244, 232, 0.08);
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .cart-float {
+      position: fixed;
+      top: calc(var(--header-height) + 1rem);
+      right: 1rem;
+      z-index: 41;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 62px;
+      height: 62px;
+      border: 1px solid rgba(198, 161, 91, 0.5);
+      border-radius: 50%;
+      color: var(--charcoal);
+      background: var(--gold);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cart-float:hover {
+      transform: translateY(-2px);
+    }
+
+    .cart-float svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .cart-float-count {
+      position: absolute;
+      top: -6px;
+      right: -4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 0.35rem;
+      border: 2px solid var(--charcoal);
+      border-radius: 999px;
+      color: var(--ivory);
+      background: var(--red);
+      font-family: Arial, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .cart-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(0, 0, 0, 0.34);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .cart-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .cart-count {
@@ -956,9 +1052,6 @@
       display: grid;
       gap: 0.55rem;
       min-height: 84px;
-      max-height: 300px;
-      overflow: auto;
-      padding-right: 0.25rem;
     }
 
     .cart-empty {
@@ -2023,10 +2116,6 @@
         grid-template-columns: 1fr;
       }
 
-      .cart-panel {
-        position: static;
-      }
-
       .menu-book-head {
         display: block;
       }
@@ -2390,7 +2479,7 @@
           </div>
         </aside>
 
-        <section class="order-board reveal" id="order" aria-label="Online bestellen">
+        <section class="order-board" id="order" aria-label="Online bestellen">
           <div class="order-head">
             <div>
               <p class="section-kicker">Online bestellen</p>
@@ -2527,29 +2616,6 @@
               </article>
             </div>
 
-            <aside class="cart-panel" aria-label="Warenkorb">
-              <h3>Warenkorb <span class="cart-count" id="cartCount">0</span></h3>
-              <div class="cart-list" id="cartList">
-                <div class="cart-empty">Noch keine Gerichte ausgewählt.</div>
-              </div>
-              <div class="cart-total">
-                <span>Gesamt</span>
-                <strong id="cartTotal">0,00 €</strong>
-              </div>
-              <div class="order-fields">
-                <input id="orderName" type="text" autocomplete="name" placeholder="Name für die Bestellung" required>
-                <input id="orderPhone" type="tel" autocomplete="tel" placeholder="Telefonnummer" required>
-                <textarea id="orderNote" placeholder="Notiz, Abholzeit, Allergien"></textarea>
-              </div>
-              <div class="cart-actions">
-                <button class="btn btn-primary" type="button" id="sendOrderEmail">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5.5A2.5 2.5 0 0 1 5.5 3h13A2.5 2.5 0 0 1 21 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5v-13Zm2.5-.5a.5.5 0 0 0-.5.5v.82l7 4.2 7-4.2V5.5a.5.5 0 0 0-.5-.5h-13ZM19 8.65l-6.49 3.89a1 1 0 0 1-1.02 0L5 8.65v9.85a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V8.65Z"/></svg>
-                  Bestellung per E-Mail senden
-                </button>
-                <button class="btn btn-secondary" type="button" id="clearCart">Warenkorb leeren</button>
-              </div>
-              <p class="cart-note" id="cartNote" aria-live="polite"></p>
-            </aside>
           </div>
         </section>
 
@@ -2819,6 +2885,39 @@
     </section>
   </main>
 
+  <button class="cart-float" type="button" id="cartToggle" aria-controls="cartPanel" aria-expanded="false" aria-label="Warenkorb öffnen">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4a1 1 0 0 1 .94.66L8.43 6H20a1 1 0 0 1 .95 1.32l-2 6A1 1 0 0 1 18 14H9a1 1 0 0 1-.94-.66L5.3 6H3a1 1 0 1 1 0-2h4Zm2.12 4 1.5 4h6.66l1.33-4H9.12ZM10 20a2 2 0 1 1 .01-4.01A2 2 0 0 1 10 20Zm7 0a2 2 0 1 1 .01-4.01A2 2 0 0 1 17 20Z"/></svg>
+    <span class="cart-float-count" id="cartFloatCount">0</span>
+  </button>
+  <div class="cart-backdrop" id="cartBackdrop" hidden></div>
+
+  <aside class="cart-panel" id="cartPanel" aria-label="Warenkorb" aria-hidden="true">
+    <div class="cart-panel-head">
+      <h3>Warenkorb <span class="cart-count" id="cartCount">0</span></h3>
+      <button class="cart-close" type="button" id="cartClose" aria-label="Warenkorb schließen">×</button>
+    </div>
+    <div class="cart-list" id="cartList">
+      <div class="cart-empty">Noch keine Gerichte ausgewählt.</div>
+    </div>
+    <div class="cart-total">
+      <span>Gesamt</span>
+      <strong id="cartTotal">0,00 €</strong>
+    </div>
+    <div class="order-fields">
+      <input id="orderName" type="text" autocomplete="name" placeholder="Name für die Bestellung" required>
+      <input id="orderPhone" type="tel" autocomplete="tel" placeholder="Telefonnummer" required>
+      <textarea id="orderNote" placeholder="Notiz, Abholzeit, Allergien"></textarea>
+    </div>
+    <div class="cart-actions">
+      <button class="btn btn-primary" type="button" id="sendOrderEmail">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5.5A2.5 2.5 0 0 1 5.5 3h13A2.5 2.5 0 0 1 21 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5v-13Zm2.5-.5a.5.5 0 0 0-.5.5v.82l7 4.2 7-4.2V5.5a.5.5 0 0 0-.5-.5h-13ZM19 8.65l-6.49 3.89a1 1 0 0 1-1.02 0L5 8.65v9.85a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V8.65Z"/></svg>
+        Bestellung per E-Mail senden
+      </button>
+      <button class="btn btn-secondary" type="button" id="clearCart">Warenkorb leeren</button>
+    </div>
+    <p class="cart-note" id="cartNote" aria-live="polite"></p>
+  </aside>
+
   <footer class="site-footer">
     <div class="footer-grid">
       <section aria-label="Restaurant Kontakt">
@@ -2882,8 +2981,13 @@
       const menuEmptyNote = menuRightPage.querySelector(".menu-empty-note");
       const menuSinglePage = window.matchMedia("(max-width: 920px)");
       const orderItems = document.getElementById("orderItems");
+      const cartToggle = document.getElementById("cartToggle");
+      const cartPanel = document.getElementById("cartPanel");
+      const cartBackdrop = document.getElementById("cartBackdrop");
+      const cartClose = document.getElementById("cartClose");
       const cartList = document.getElementById("cartList");
       const cartCount = document.getElementById("cartCount");
+      const cartFloatCount = document.getElementById("cartFloatCount");
       const cartTotal = document.getElementById("cartTotal");
       const clearCart = document.getElementById("clearCart");
       const sendOrderEmail = document.getElementById("sendOrderEmail");
@@ -3316,12 +3420,22 @@
 
       const getCartLines = () => Array.from(cart.values());
 
+      const setCartOpen = (isOpen) => {
+        cartPanel.classList.toggle("is-open", isOpen);
+        cartBackdrop.classList.toggle("is-open", isOpen);
+        cartBackdrop.hidden = !isOpen;
+        cartPanel.setAttribute("aria-hidden", String(!isOpen));
+        cartToggle.setAttribute("aria-expanded", String(isOpen));
+        cartToggle.setAttribute("aria-label", isOpen ? "Warenkorb schließen" : "Warenkorb öffnen");
+      };
+
       const renderCart = () => {
         const lines = getCartLines();
         const totalQuantity = lines.reduce((sum, item) => sum + item.quantity, 0);
         const total = lines.reduce((sum, item) => sum + item.quantity * item.price, 0);
 
         cartCount.textContent = String(totalQuantity);
+        cartFloatCount.textContent = String(totalQuantity);
         cartTotal.textContent = euro.format(total);
 
         if (!lines.length) {
@@ -3355,6 +3469,16 @@
         cartNote.textContent = `${name} wurde hinzugefügt.`;
         renderCart();
       };
+
+      cartToggle.addEventListener("click", () => {
+        setCartOpen(cartToggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      cartClose.addEventListener("click", () => setCartOpen(false));
+      cartBackdrop.addEventListener("click", () => setCartOpen(false));
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setCartOpen(false);
+      });
 
       orderItems.addEventListener("click", (event) => {
         const button = event.target.closest(".add-order");
