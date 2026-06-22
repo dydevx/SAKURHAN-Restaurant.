@@ -3351,7 +3351,60 @@
         "'": "&#39;"
       })[char]);
 
+      const isIOSDevice = () => /iPad|iPhone|iPod/.test(navigator.userAgent)
+        || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+      const buildQueryString = (fields) => {
+        const params = new URLSearchParams();
+        Object.entries(fields).forEach(([key, value]) => {
+          if (value) params.set(key, value);
+        });
+        return params.toString();
+      };
+
       const openMailDraft = (subject, body) => {
+        const mailtoUrl = `mailto:${mailRecipient}?${buildQueryString({
+          cc: mailCcRecipient,
+          subject,
+          body
+        })}`;
+
+        if (isIOSDevice()) {
+          const gmailIOSUrl = `googlegmail:///co?${buildQueryString({
+            to: mailRecipient,
+            cc: mailCcRecipient,
+            subject,
+            body
+          })}`;
+          let didLeavePage = false;
+          let fallbackTimer;
+
+          function cleanup() {
+            window.clearTimeout(fallbackTimer);
+            window.removeEventListener("pagehide", markLeft);
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+          }
+
+          function markLeft() {
+            didLeavePage = true;
+            cleanup();
+          }
+
+          function handleVisibilityChange() {
+            if (document.hidden) markLeft();
+          }
+
+          window.addEventListener("pagehide", markLeft);
+          document.addEventListener("visibilitychange", handleVisibilityChange);
+          fallbackTimer = window.setTimeout(() => {
+            cleanup();
+            if (!didLeavePage) window.location.href = mailtoUrl;
+          }, 1600);
+
+          window.location.href = gmailIOSUrl;
+          return;
+        }
+
         const gmailUrl = new URL("https://mail.google.com/mail/");
         gmailUrl.searchParams.set("view", "cm");
         gmailUrl.searchParams.set("fs", "1");
