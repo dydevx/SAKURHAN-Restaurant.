@@ -3000,7 +3000,6 @@
       const orderSummary = document.getElementById("orderSummary");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const mailRecipient = "sakurhanrestaurant@gmail.com";
-      const mailCcRecipient = "thuhandsonbeo@gmail.com";
 
       const hideLoader = () => loader && loader.classList.add("is-hidden");
       window.addEventListener("load", hideLoader, { once: true });
@@ -3375,7 +3374,6 @@
 
       const openMailDraft = (subject, body) => {
         const mailtoUrl = `mailto:${mailRecipient}?${buildQueryString({
-          cc: mailCcRecipient,
           subject,
           body
         })}`;
@@ -3383,13 +3381,11 @@
         if (isIOSDevice()) {
           const gmailIOSUrl = `googlegmail://co?${buildQueryString({
             to: mailRecipient,
-            cc: mailCcRecipient,
             subject,
             body
           })}`;
           const gmailIOSAltUrl = `googlegmail:///co?${buildQueryString({
             to: mailRecipient,
-            cc: mailCcRecipient,
             subject,
             body
           })}`;
@@ -3429,7 +3425,6 @@
         gmailUrl.searchParams.set("view", "cm");
         gmailUrl.searchParams.set("fs", "1");
         gmailUrl.searchParams.set("to", mailRecipient);
-        gmailUrl.searchParams.set("cc", mailCcRecipient);
         gmailUrl.searchParams.set("su", subject);
         gmailUrl.searchParams.set("body", body);
 
